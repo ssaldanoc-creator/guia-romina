@@ -7,32 +7,18 @@
 <meta name="description" content="Una guía de diez minutos para ver dónde se va tu tiempo, medir tus cuatro números y nombrar la decisión que estás postergando. Romina Carzoglio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+/* Claridad Privada: arena clara y la tipografía del logo. Una sola paleta clara a propósito: el logo es oscuro sobre blanco. */
 :root{
-  --bg:#F5F1ED; --bg2:#EFE8E0; --card:#FBF8F5;
-  --ink:#3A2A22; --ink2:rgba(58,42,34,.72); --ink3:rgba(58,42,34,.5);
-  --terra:#A87C6B; --terra-deep:#7E4F3B; --rosa:#C9A9A0; --rosa-soft:#D9C1B8;
-  --line:rgba(126,79,59,.2); --line-soft:rgba(126,79,59,.1);
-  --good:#6F7F5B; --warn:#B0703F; --err:#A4473A;
-  --serif:"Playfair Display",Georgia,serif; --sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --bg:#FBF8F3; --bg2:#F2EADF; --card:#FFFFFF;
+  --ink:#2F2A26; --ink2:rgba(47,42,38,.74); --ink3:rgba(47,42,38,.54);
+  --terra:#BCA78F; --terra-deep:#7A6654; --rosa:#D9C9B5; --rosa-soft:#EAE0D2;
+  --line:rgba(122,102,84,.22); --line-soft:rgba(122,102,84,.12);
+  --good:#5F7550; --warn:#A8662F; --err:#A4473A;
+  --serif:"Cormorant Garamond","Playfair Display",Georgia,serif; --sans:"Plus Jakarta Sans",system-ui,sans-serif;
   --ease:cubic-bezier(.32,.72,0,1);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#221915; --bg2:#2B201B; --card:#2E231D;
-    --ink:#F2EBE5; --ink2:rgba(242,235,229,.75); --ink3:rgba(242,235,229,.5);
-    --terra:#C9998A; --terra-deep:#D9AE9E; --rosa:#8C6A60; --rosa-soft:#5A433B;
-    --line:rgba(217,174,158,.22); --line-soft:rgba(217,174,158,.1);
-    --good:#A3B38A; --warn:#E0A070; --err:#E08A7A;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#221915; --bg2:#2B201B; --card:#2E231D;
-  --ink:#F2EBE5; --ink2:rgba(242,235,229,.75); --ink3:rgba(242,235,229,.5);
-  --terra:#C9998A; --terra-deep:#D9AE9E; --rosa:#8C6A60; --rosa-soft:#5A433B;
-  --line:rgba(217,174,158,.22); --line-soft:rgba(217,174,158,.1);
-  --good:#A3B38A; --warn:#E0A070; --err:#E08A7A;
+  color-scheme:light;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
@@ -40,13 +26,20 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17p
 .wrap{max-width:680px;margin:0 auto;padding:0 20px}
 em{font-family:var(--serif);font-style:italic;font-weight:400}
 h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15;letter-spacing:-.01em}
-h1{font-size:clamp(40px,10vw,64px)}
-h2{font-size:clamp(28px,7vw,38px);margin-bottom:12px}
-h3{font-size:21px;margin-bottom:6px}
+h1{font-size:clamp(44px,11vw,70px)}
+h2{font-size:clamp(32px,8vw,44px);margin-bottom:12px}
+h3{font-size:25px;margin-bottom:6px}
 p{color:var(--ink2)}
 .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-deep);font-weight:600}
 
-.hero{padding:56px 0 40px;border-bottom:1px solid var(--line)}
+.brand{display:flex;justify-content:center;padding:22px 0 6px}
+.brand img{width:min(190px,52vw);height:auto;mix-blend-mode:multiply}
+.hero{padding:18px 0 40px;border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;gap:28px;align-items:center}
+.hero .photo{border-radius:22px;overflow:hidden;background:var(--bg2);aspect-ratio:4/5;max-width:100%;max-height:540px}
+.hero .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block}
+.hero .text{min-width:0}
+@media (min-width:860px){.hero .wrap{max-width:1040px;grid-template-columns:400px minmax(0,1fr);gap:48px}}
 .hero .kicker{margin-bottom:22px}
 .hero h1 em{color:var(--terra-deep)}
 .hero .lead{font-size:19px;margin-top:20px}
@@ -78,7 +71,7 @@ input[type=range]{width:100%;margin-top:12px;-webkit-appearance:none;appearance:
 input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(to right,var(--terra) var(--p,0%),var(--line) var(--p,0%))}
 input[type=range]::-moz-range-track{height:4px;border-radius:4px;background:var(--line)}
 input[type=range]::-moz-range-progress{height:4px;border-radius:4px;background:var(--terra)}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--card);border:2px solid var(--terra-deep);margin-top:-10px;box-shadow:0 2px 6px rgba(58,42,34,.15)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--card);border:2px solid var(--terra-deep);margin-top:-10px;box-shadow:0 2px 6px rgba(47,42,38,.15)}
 input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--card);border:2px solid var(--terra-deep)}
 .ends{display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-top:-2px}
 .tally{margin-top:16px;font-size:15px;color:var(--ink2);text-align:right}
@@ -108,7 +101,7 @@ input:focus,select:focus{border-color:var(--terra-deep)}
 .consent input{accent-color:var(--terra-deep);width:20px;height:20px;flex:none;margin-top:2px}
 .consent.bad{color:var(--err)}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-size:17px;font-weight:600;border:0;border-radius:999px;padding:16px 24px;cursor:pointer;background:var(--terra-deep);color:#FBF8F5;transition:transform .2s var(--ease),opacity .2s;width:100%;margin-top:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-size:17px;font-weight:600;border:0;border-radius:999px;padding:16px 24px;cursor:pointer;background:var(--terra-deep);color:#FFFFFF;transition:transform .2s var(--ease),opacity .2s;width:100%;margin-top:8px}
 .btn:active{transform:scale(.98)}
 .btn[disabled]{opacity:.6;cursor:wait}
 .btn.ghost{background:transparent;color:var(--terra-deep);border:1px solid var(--terra-deep)}
@@ -119,12 +112,12 @@ input:focus,select:focus{border-color:var(--terra-deep)}
 #resultados[hidden]{display:none}
 .verdict{border-radius:18px;padding:24px 22px;background:var(--bg2);border:1px solid var(--line-soft);margin-bottom:26px}
 .verdict h3{font-size:24px;color:var(--terra-deep);margin-bottom:8px}
-.result{margin-top:12px;background:var(--ink);color:var(--bg);border-radius:18px;padding:24px 22px}
-.result p{color:color-mix(in srgb,var(--bg) 80%,transparent)}
-.result .big{font-family:var(--serif);font-size:clamp(44px,12vw,64px);line-height:1;color:var(--bg)}
+.result{margin-top:12px;background:var(--bg2);color:var(--ink);border:1px solid var(--line-soft);border-radius:18px;padding:24px 22px}
+.result p{color:var(--ink2)}
+.result .big{font-family:var(--serif);font-size:clamp(48px,13vw,70px);line-height:1;color:var(--terra-deep)}
 .result .big small{font-family:var(--sans);font-size:15px;opacity:.7;margin-left:6px}
 .result .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.65;margin-bottom:8px}
-.result .split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;padding-top:18px;border-top:1px solid color-mix(in srgb,var(--bg) 18%,transparent)}
+.result .split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
 .result .split .big{font-size:36px}
 .result .note{margin-top:16px;font-size:15px}
 .block{margin-top:40px}
@@ -140,7 +133,7 @@ input:focus,select:focus{border-color:var(--terra-deep)}
 .reading p+p{margin-top:8px}
 .toggle{display:flex;background:var(--bg2);border-radius:999px;padding:4px;margin:16px 0}
 .toggle button{flex:1;font:inherit;font-size:14.5px;font-weight:500;border:0;background:transparent;color:var(--ink2);padding:10px 8px;border-radius:999px;cursor:pointer;transition:all .3s var(--ease)}
-.toggle button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(58,42,34,.12)}
+.toggle button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(47,42,38,.12)}
 .scene{display:none;background:var(--card);border:1px solid var(--line-soft);border-radius:18px;padding:22px}
 .scene.on{display:block;animation:in .45s var(--ease)}
 @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -161,8 +154,11 @@ footer .sig{font-family:var(--serif);font-style:italic;font-size:20px;color:var(
 </head>
 <body>
 
+<div class="brand"><img src="logo.jpg" alt="Claridad Privada, Romina Carzoglio" width="640" height="416"></div>
 <header class="hero">
   <div class="wrap">
+    <div class="photo"><img src="romina.jpg" alt="Romina Carzoglio" width="760" height="1106" fetchpriority="high"></div>
+    <div class="text">
     <div class="kicker" id="hKicker">Escribiste «claridad»</div>
     <h1 id="hTitle">Una hora cada <em>quince días.</em></h1>
     <p class="lead" id="hLead">Si encontrarla te parece imposible, ese ya es el primer dato. Esta guía te ayuda a ver tres cosas: dónde se va tu tiempo, cómo estás hoy en cuatro números y qué decisión venís postergando.</p>
@@ -171,6 +167,7 @@ footer .sig{font-family:var(--serif);font-style:italic;font-size:20px;color:var(
       <small>Romina Carzoglio, en el video que te trajo hasta acá</small>
     </div>
     <div class="meta"><span>10 minutos</span><span>4 pasos</span><span>Tus resultados al final</span></div>
+    </div>
   </div>
 </header>
 
