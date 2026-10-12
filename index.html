@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía Claridad</title>
+<meta name="description" content="Una guía de diez minutos para ver dónde se va tu tiempo, medir tus cuatro números y nombrar la decisión que estás postergando. Romina Carzoglio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F1ED; --bg2:#EFE8E0; --card:#FBF8F5;
+  --ink:#3A2A22; --ink2:rgba(58,42,34,.72); --ink3:rgba(58,42,34,.5);
+  --terra:#A87C6B; --terra-deep:#7E4F3B; --rosa:#C9A9A0; --rosa-soft:#D9C1B8;
+  --line:rgba(126,79,59,.2); --line-soft:rgba(126,79,59,.1);
+  --good:#6F7F5B; --warn:#B0703F; --err:#A4473A;
+  --serif:"Playfair Display",Georgia,serif; --sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --ease:cubic-bezier(.32,.72,0,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#221915; --bg2:#2B201B; --card:#2E231D;
+    --ink:#F2EBE5; --ink2:rgba(242,235,229,.75); --ink3:rgba(242,235,229,.5);
+    --terra:#C9998A; --terra-deep:#D9AE9E; --rosa:#8C6A60; --rosa-soft:#5A433B;
+    --line:rgba(217,174,158,.22); --line-soft:rgba(217,174,158,.1);
+    --good:#A3B38A; --warn:#E0A070; --err:#E08A7A;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#221915; --bg2:#2B201B; --card:#2E231D;
+  --ink:#F2EBE5; --ink2:rgba(242,235,229,.75); --ink3:rgba(242,235,229,.5);
+  --terra:#C9998A; --terra-deep:#D9AE9E; --rosa:#8C6A60; --rosa-soft:#5A433B;
+  --line:rgba(217,174,158,.22); --line-soft:rgba(217,174,158,.1);
+  --good:#A3B38A; --warn:#E0A070; --err:#E08A7A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;font-weight:400}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+em{font-family:var(--serif);font-style:italic;font-weight:400}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15;letter-spacing:-.01em}
+h1{font-size:clamp(40px,10vw,64px)}
+h2{font-size:clamp(28px,7vw,38px);margin-bottom:12px}
+h3{font-size:21px;margin-bottom:6px}
+p{color:var(--ink2)}
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-deep);font-weight:600}
+
+.hero{padding:56px 0 40px;border-bottom:1px solid var(--line)}
+.hero .kicker{margin-bottom:22px}
+.hero h1 em{color:var(--terra-deep)}
+.hero .lead{font-size:19px;margin-top:20px}
+.quote{margin-top:28px;padding:18px 20px;border-left:2px solid var(--terra);background:var(--bg2);border-radius:0 12px 12px 0}
+.quote p{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink)}
+.quote small{display:block;margin-top:8px;font-size:13px;color:var(--ink3)}
+.meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:26px;font-size:14px;color:var(--ink3)}
+.meta span+span::before{content:"·";margin-right:8px;color:var(--terra)}
+
+.steps{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft)}
+.steps .wrap{display:flex;gap:6px;padding-top:10px;padding-bottom:10px}
+.steps a{flex:1;text-decoration:none;font-size:12px;color:var(--ink3);text-align:center;padding:6px 2px;border-radius:999px;transition:all .3s var(--ease);white-space:nowrap}
+.steps a b{display:block;font-family:var(--serif);font-weight:500;font-size:16px;color:var(--ink2)}
+.steps a.on{background:var(--bg2);color:var(--terra-deep)}
+.steps a.on b{color:var(--terra-deep)}
+.steps a.locked{opacity:.45;pointer-events:none}
+
+section.paso{padding:52px 0;border-bottom:1px solid var(--line)}
+.paso .kicker{margin-bottom:12px}
+.paso p.intro{margin-bottom:26px}
+
+.row{background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:16px 18px;margin-bottom:10px}
+.row .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.row label{font-size:15.5px;color:var(--ink);line-height:1.4}
+.row .val{font-family:var(--serif);font-size:24px;color:var(--terra-deep);min-width:56px;text-align:right;white-space:nowrap}
+.row .val small{font-family:var(--sans);font-size:12px;color:var(--ink3);margin-left:2px}
+.row .hint{font-size:13.5px;color:var(--ink3);margin-top:2px}
+input[type=range]{width:100%;margin-top:12px;-webkit-appearance:none;appearance:none;height:28px;background:transparent}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(to right,var(--terra) var(--p,0%),var(--line) var(--p,0%))}
+input[type=range]::-moz-range-track{height:4px;border-radius:4px;background:var(--line)}
+input[type=range]::-moz-range-progress{height:4px;border-radius:4px;background:var(--terra)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--card);border:2px solid var(--terra-deep);margin-top:-10px;box-shadow:0 2px 6px rgba(58,42,34,.15)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--card);border:2px solid var(--terra-deep)}
+.ends{display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-top:-2px}
+.tally{margin-top:16px;font-size:15px;color:var(--ink2);text-align:right}
+.tally b{font-family:var(--serif);font-size:22px;color:var(--terra-deep);font-weight:500}
+
+input[type=text],input[type=tel],input[type=email],select{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px;outline:none;transition:border .2s}
+input:focus,select:focus{border-color:var(--terra-deep)}
+.dec{background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.dec .n{font-family:var(--serif);font-style:italic;color:var(--terra-deep);font-size:15px;margin-bottom:6px}
+.dec .two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.dec .pick{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:14px;color:var(--ink2);cursor:pointer}
+.dec .pick input{accent-color:var(--terra-deep);width:18px;height:18px}
+.dec.chosen{border-color:var(--terra-deep);box-shadow:0 0 0 1px var(--terra-deep)}
+@media (max-width:420px){.dec .two{grid-template-columns:1fr}}
+
+/* form */
+.form{display:grid;gap:14px}
+.field label{display:block;font-size:14.5px;font-weight:500;color:var(--ink);margin-bottom:6px}
+.field label .opt{font-weight:400;color:var(--ink3)}
+.field .help{font-size:13px;color:var(--ink3);margin-top:4px}
+.field.bad input,.field.bad select{border-color:var(--err)}
+.field .msg{font-size:13px;color:var(--err);margin-top:4px;display:none}
+.field.bad .msg{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:480px){.grid2{grid-template-columns:1fr}}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink2);cursor:pointer}
+.consent input{accent-color:var(--terra-deep);width:20px;height:20px;flex:none;margin-top:2px}
+.consent.bad{color:var(--err)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-size:17px;font-weight:600;border:0;border-radius:999px;padding:16px 24px;cursor:pointer;background:var(--terra-deep);color:#FBF8F5;transition:transform .2s var(--ease),opacity .2s;width:100%;margin-top:8px}
+.btn:active{transform:scale(.98)}
+.btn[disabled]{opacity:.6;cursor:wait}
+.btn.ghost{background:transparent;color:var(--terra-deep);border:1px solid var(--terra-deep)}
+.formerr{font-size:14px;color:var(--err);text-align:center;min-height:20px}
+.privacy{font-size:13px;color:var(--ink3);margin-top:10px;text-align:center}
+
+/* results */
+#resultados[hidden]{display:none}
+.verdict{border-radius:18px;padding:24px 22px;background:var(--bg2);border:1px solid var(--line-soft);margin-bottom:26px}
+.verdict h3{font-size:24px;color:var(--terra-deep);margin-bottom:8px}
+.result{margin-top:12px;background:var(--ink);color:var(--bg);border-radius:18px;padding:24px 22px}
+.result p{color:color-mix(in srgb,var(--bg) 80%,transparent)}
+.result .big{font-family:var(--serif);font-size:clamp(44px,12vw,64px);line-height:1;color:var(--bg)}
+.result .big small{font-family:var(--sans);font-size:15px;opacity:.7;margin-left:6px}
+.result .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.65;margin-bottom:8px}
+.result .split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;padding-top:18px;border-top:1px solid color-mix(in srgb,var(--bg) 18%,transparent)}
+.result .split .big{font-size:36px}
+.result .note{margin-top:16px;font-size:15px}
+.block{margin-top:40px}
+.block > .kicker{margin-bottom:10px}
+.bars{margin-top:16px;display:grid;gap:14px}
+.bar .bl{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px}
+.bar .bl b{font-weight:600}
+.bar .track{height:10px;border-radius:10px;background:var(--line-soft);overflow:hidden}
+.bar .fill{height:100%;border-radius:10px;background:var(--terra);transition:width .5s var(--ease)}
+.bar.low .fill{background:var(--warn)}
+.reading{margin-top:18px;padding:20px;border-radius:14px;background:var(--bg2);border:1px solid var(--line-soft)}
+.reading h3{color:var(--terra-deep)}
+.reading p+p{margin-top:8px}
+.toggle{display:flex;background:var(--bg2);border-radius:999px;padding:4px;margin:16px 0}
+.toggle button{flex:1;font:inherit;font-size:14.5px;font-weight:500;border:0;background:transparent;color:var(--ink2);padding:10px 8px;border-radius:999px;cursor:pointer;transition:all .3s var(--ease)}
+.toggle button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(58,42,34,.12)}
+.scene{display:none;background:var(--card);border:1px solid var(--line-soft);border-radius:18px;padding:22px}
+.scene.on{display:block;animation:in .45s var(--ease)}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.scene h3{font-size:24px;margin-bottom:14px}
+.scene ul{list-style:none;display:grid;gap:12px}
+.scene li{padding-left:22px;position:relative;color:var(--ink2);font-size:16px}
+.scene li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--rosa)}
+.scene.b li::before{background:var(--terra-deep)}
+.scene li b{color:var(--ink);font-weight:600}
+.program{margin-top:40px;padding:24px 22px;border-radius:18px;background:var(--bg2)}
+.program ul{list-style:none;margin-top:14px;display:grid;gap:10px}
+.program li{display:flex;gap:12px;font-size:15.5px;color:var(--ink2)}
+.program li span{font-family:var(--serif);font-style:italic;color:var(--terra-deep);min-width:34px}
+
+footer{padding:40px 0 56px;text-align:center;font-size:13px;color:var(--ink3)}
+footer .sig{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ink);margin-bottom:6px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker" id="hKicker">Escribiste «claridad»</div>
+    <h1 id="hTitle">Una hora cada <em>quince días.</em></h1>
+    <p class="lead" id="hLead">Si encontrarla te parece imposible, ese ya es el primer dato. Esta guía te ayuda a ver tres cosas: dónde se va tu tiempo, cómo estás hoy en cuatro números y qué decisión venís postergando.</p>
+    <div class="quote" id="hQuote">
+      <p>«Dentro de dos meses pueden pasar dos cosas: seguir en el mismo lugar, o haber avanzado y tomado las decisiones que hoy seguís postergando.»</p>
+      <small>Romina Carzoglio, en el video que te trajo hasta acá</small>
+    </div>
+    <div class="meta"><span>10 minutos</span><span>4 pasos</span><span>Tus resultados al final</span></div>
+  </div>
+</header>
+
+<nav class="steps" aria-label="Pasos">
+  <div class="wrap">
+    <a href="#p1" data-s="p1"><b>1</b>Tiempo</a>
+    <a href="#p2" data-s="p2"><b>2</b>Números</a>
+    <a href="#p3" data-s="p3"><b>3</b>Decisión</a>
+    <a href="#p4" data-s="p4"><b>4</b>Tus datos</a>
+    <a href="#resultados" data-s="resultados" class="locked" id="navRes"><b>5</b>Resultados</a>
+  </div>
+</nav>
+
+<main>
+<section class="paso" id="p1">
+  <div class="wrap">
+    <div class="kicker">Paso 1 · Dónde se va tu tiempo</div>
+    <h2>No es que no tengas tiempo. <em>Está ocupado.</em></h2>
+    <p class="intro">Marcá cuántas horas por semana se te van en cada cosa. Pensá en una semana normal, no en la mejor.</p>
+    <div id="tasks"></div>
+    <div class="tally">Total: <b id="tally">0</b> h por semana</div>
+  </div>
+</section>
+
+<section class="paso" id="p2">
+  <div class="wrap">
+    <div class="kicker">Paso 2 · Tus cuatro números</div>
+    <h2>Una foto de <em>hoy.</em></h2>
+    <p class="intro">Del 0 al 10, sin pensarlo demasiado: la primera respuesta suele ser la más honesta. Son los mismos cuatro números que Romina mide el primer y el último día de su programa.</p>
+    <div id="nums"></div>
+  </div>
+</section>
+
+<section class="paso" id="p3">
+  <div class="wrap">
+    <div class="kicker">Paso 3 · Lo que venís postergando</div>
+    <h2>Ponerle <em>nombre</em> a la decisión.</h2>
+    <p class="intro">Escribí hasta tres decisiones que sabés que tenés que tomar y no tomás. Después marcá la que, si la resolvieras, ordenaría las demás.</p>
+    <div id="decs"></div>
+  </div>
+</section>
+
+<section class="paso" id="p4">
+  <div class="wrap">
+    <div class="kicker">Paso 4 · Tus datos</div>
+    <h2>¿A quién le <em>preparamos</em> los resultados?</h2>
+    <p class="intro">Con estos datos armamos tu lectura completa y, si tus respuestas muestran que es un buen momento para trabajarlo, el equipo de Romina te escribe por WhatsApp.</p>
+    <form class="form" id="form" novalidate>
+      <div class="field" data-f="nombre"><label for="f_nombre">Nombre y apellido</label><input type="text" id="f_nombre" autocomplete="name" maxlength="80"><div class="msg">Escribí tu nombre y apellido.</div></div>
+      <div class="grid2">
+        <div class="field" data-f="whatsapp"><label for="f_whatsapp">WhatsApp</label><input type="tel" id="f_whatsapp" autocomplete="tel" inputmode="tel" placeholder="+54 9 11 1234 5678" maxlength="24"><div class="help">Con el código de tu país.</div><div class="msg">Revisá el número: con código de país, solo dígitos.</div></div>
+        <div class="field" data-f="email"><label for="f_email">Email <span class="opt">(opcional)</span></label><input type="email" id="f_email" autocomplete="email" maxlength="100"><div class="msg">Ese email no parece válido.</div></div>
+      </div>
+      <div class="grid2">
+        <div class="field" data-f="instagram"><label for="f_instagram">Usuario de Instagram <span class="opt">(opcional)</span></label><input type="text" id="f_instagram" placeholder="@tuusuario" maxlength="40" autocapitalize="off"></div>
+        <div class="field" data-f="pais"><label for="f_pais">País <span class="opt">(opcional)</span></label><input type="text" id="f_pais" autocomplete="country-name" maxlength="40"></div>
+      </div>
+      <div class="field" data-f="empresa"><label for="f_empresa">Empresa o proyecto <span class="opt">(opcional)</span></label><input type="text" id="f_empresa" autocomplete="organization" maxlength="80"></div>
+      <div class="grid2">
+        <div class="field" data-f="rol"><label for="f_rol">Tu rol hoy</label><select id="f_rol"><option value="">Elegí una opción</option></select><div class="msg">Elegí tu rol.</div></div>
+        <div class="field" data-f="equipo"><label for="f_equipo">¿Cuántas personas trabajan con vos?</label><select id="f_equipo"><option value="">Elegí una opción</option></select><div class="msg">Elegí una opción.</div></div>
+      </div>
+      <div class="field" data-f="cuando"><label for="f_cuando">Si encontraras el acompañamiento indicado, ¿cuándo te gustaría empezar?</label><select id="f_cuando"><option value="">Elegí una opción</option></select><div class="msg">Elegí una opción.</div></div>
+      <div class="field" data-f="inversion"><label for="f_inversion">¿Estás en condiciones de invertir en un proceso 1 a 1 si es lo que necesitás?</label><select id="f_inversion"><option value="">Elegí una opción</option></select><div class="msg">Elegí una opción.</div></div>
+      <label class="consent" id="consentWrap"><input type="checkbox" id="f_consent"> <span>Acepto que el equipo de Romina Carzoglio guarde mis respuestas y me escriba por WhatsApp para conversar sobre mis resultados.</span></label>
+      <button class="btn" type="submit" id="go">Conocer mis resultados</button>
+      <div class="formerr" id="formErr" aria-live="polite"></div>
+    </form>
+    <p class="privacy">Tus respuestas las lee solo el equipo de Romina. No se comparten con nadie más.</p>
+  </div>
+</section>
+
+<section class="paso" id="resultados" hidden style="border-bottom:0">
+  <div class="wrap">
+    <div class="kicker">Tus resultados</div>
+    <h2 id="rTitle">Esto es lo que <em>mostraron tus respuestas.</em></h2>
+    <div class="verdict" id="verdict"></div>
+
+    <div class="block">
+      <div class="kicker">Tu tiempo</div>
+      <div class="result">
+        <div class="lbl">Horas por semana en lo que no te corresponde</div>
+        <div class="big" id="hWeek">0<small>h</small></div>
+        <div class="split">
+          <div><div class="lbl">En los próximos 60 días</div><div class="big" id="h60">0<small>h</small></div></div>
+          <div><div class="lbl">Lo que pide un proceso</div><div class="big">4<small>h</small></div></div>
+        </div>
+        <p class="note" id="hNote"></p>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="kicker">Tus cuatro números</div>
+      <div class="bars" id="bars"></div>
+      <div class="reading" id="reading"></div>
+    </div>
+
+    <div class="block" id="decBlock">
+      <div class="kicker">Tu decisión</div>
+      <div class="reading" id="decReading"></div>
+    </div>
+
+    <div class="block">
+      <div class="kicker">Dentro de dos meses</div>
+      <p>Ninguna de las dos escenas es una promesa: es la cuenta de lo que pasa si nada cambia y de lo que se trabaja si decidís ocuparte.</p>
+      <div class="toggle" role="tablist">
+        <button class="on" data-scene="a" role="tab" aria-selected="true">Si nada cambia</button>
+        <button data-scene="b" role="tab" aria-selected="false">Si te ocupás</button>
+      </div>
+      <div class="scene a on" id="sceneA"></div>
+      <div class="scene b" id="sceneB"></div>
+    </div>
+
+    <div class="program">
+      <div class="kicker">Si querés ir más lejos</div>
+      <h3 style="margin-top:8px">Claridad Privada</h3>
+      <p>Un acompañamiento 1 a 1 con Romina para dejar de sostener todo vos. No trabaja cómo te sentís: trabaja qué decidís, qué delegás y cuántas horas recuperás.</p>
+      <ul>
+        <li><span>60</span>días, en tres fases: diagnóstico, liderazgo y delegación, y proyección.</li>
+        <li><span>4</span>sesiones individuales de 60 minutos, una cada dos semanas.</li>
+        <li><span>0–10</span>tus cuatro números, medidos el primer día y el último.</li>
+        <li><span>10</span>personas como máximo por cohorte: cada lugar es tiempo directo con Romina.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="sig">Romina Carzoglio</div>
+    <div>Claridad Privada · rominacarzoglio.com</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ── Destino de los datos ─────────────────────────────────────────────
+     Mismo puente que el formulario de rominacarzoglio.com: FormSubmit → correo.
+     El asunto empieza con «Nuevo diagnóstico» para que lo levanten la tarea diaria
+     aviso-diagnosticos-claridad-privada y la skill diagnosticos-crm. */
+  var MAIL = "ssaldanoc@gmail.com";
+  var ENDPOINT = "https://formsubmit.co/ajax/" + MAIL;
+  var KEY = "guia-claridad-v2";
+
+  /* ── Palabra que comentó la persona (?palabra=delegar en el enlace del DM) ── */
+  var qs = new URLSearchParams(location.search);
+  var PALABRA = (qs.get("palabra") || qs.get("p") || "claridad").toLowerCase().trim().slice(0,30);
+  var IG_URL = (qs.get("ig") || "").replace(/[^\w.@]/g,"").slice(0,40);
+  var HERO = {
+    claridad: null,
+    delegar: ["Delegar no es <em>repartir tareas.</em>", "Es dejar de controlar el paso a paso para controlar el resultado. Esta guía te ayuda a ver cuánto de lo que hacés podría sostener otra persona, cómo estás hoy en cuatro números y qué decisión venís postergando."],
+    agotamiento: ["El cansancio también <em>es un dato.</em>", "No siempre es falta de descanso: muchas veces es sostener solo lo que debería sostener un equipo. Esta guía te ayuda a ver dónde se va tu energía, cómo estás hoy en cuatro números y qué decisión venís postergando."]
+  };
+  var DEFAULT_HERO = ["Diez minutos para <em>ver con claridad.</em>", "Esta guía te ayuda a ver tres cosas: dónde se va tu tiempo, cómo estás hoy en cuatro números y qué decisión venís postergando."];
+  if (PALABRA !== "claridad") {
+    var h = HERO[PALABRA] || DEFAULT_HERO;
+    document.getElementById("hTitle").innerHTML = h[0];
+    document.getElementById("hLead").textContent = h[1];
+    document.getElementById("hQuote").remove();
+  }
+  document.getElementById("hKicker").textContent = "Escribiste «" + PALABRA + "»";
+
+  var TASKS = [
+    ["Responder mensajes y consultas que otra persona podría contestar", "WhatsApp, correo, DMs"],
+    ["Revisar o rehacer lo que hace tu equipo", "Porque «si no lo veo yo, sale mal»"],
+    ["Apagar incendios que se repiten", "El mismo problema, otra semana"],
+    ["Reuniones donde tu presencia no cambia nada", "Estás por si acaso"],
+    ["Tareas operativas o administrativas", "Pagos, agendas, planillas, compras"],
+    ["Darle vueltas a lo que no terminás de decidir", "Pensarlo de nuevo, sin cerrar"]
+  ];
+  var NUMS = [
+    ["claridad","Claridad","¿Qué tan claro tenés hacia dónde vas en los próximos doce meses?",false],
+    ["confianza","Confianza","¿Cuánto confiás en tus decisiones sin consultarlas mil veces?",false],
+    ["sobrecarga","Sobrecarga","¿Cuánto de lo que funciona hoy depende solo de vos?",true],
+    ["equilibrio","Equilibrio","¿Cuánto espacio real tienen tu descanso, tu salud y tu gente?",false]
+  ];
+  var DESDE = ["Menos de un mes","Entre 1 y 3 meses","Entre 3 y 6 meses","Más de 6 meses","Más de un año"];
+  var DESDE_M = [0.5,2,4.5,8,14];
+  var FRENO = ["No sé por dónde empezar","Miedo a equivocarme","No tengo tiempo para pensarlo","Depende de otras personas","Me falta información"];
+  var FRENO_TXT = {
+    "No sé por dónde empezar":"Cuando no sabés por dónde empezar, casi nunca falta voluntad: falta un orden. Separar los hechos de las interpretaciones suele mostrar cuál es el primer movimiento.",
+    "Miedo a equivocarme":"El miedo a equivocarte tiene un costo que no se ve: mientras no decidís, ya estás eligiendo. Postergar también es una decisión, solo que sin dueño.",
+    "No tengo tiempo para pensarlo":"Si no hay tiempo para pensar la decisión, el problema no es la decisión: es todo lo que sostenés antes de llegar a ella. Tu cuenta de horas lo muestra.",
+    "Depende de otras personas":"Cuando depende de otros, lo que suele faltar es una conversación difícil o un criterio claro para delegar. Ninguna de las dos se resuelve esperando.",
+    "Me falta información":"A veces falta información. Otras veces ya tenés suficiente y pedir más es la forma elegante de no decidir. Vale la pena preguntarte cuál de las dos es."
+  };
+  var ROL = ["Dueño o dueña de una empresa o negocio","Directivo, gerente o líder con equipo a cargo","Profesional independiente","Trabajo en relación de dependencia sin equipo a cargo","Otro"];
+  var EQUIPO = ["Trabajo solo o sola","2 a 5 personas","6 a 20 personas","Más de 20 personas"];
+  var CUANDO = ["Ahora, este mes","En los próximos 2 o 3 meses","Más adelante","Solo estoy explorando"];
+  var INVERSION = ["Sí, si es lo que necesito","Tendría que evaluarlo","No por ahora"];
+  var R = {
+    claridad:["Lo que más pesa hoy: la dirección","Cuando no está claro hacia dónde vas, todo parece urgente y nada parece prioritario. Por eso el trabajo empieza por un mapa: qué está pasando de verdad y qué tres focos ordenan lo demás.","no tener clara la dirección"],
+    confianza:["Lo que más pesa hoy: confiar en tu criterio","Si cada decisión necesita tres consultas, el problema no es la falta de capacidad: es que no hay un criterio propio escrito contra el cual decidir. Ese criterio se construye.","confiar en su propio criterio"],
+    sobrecarga:["Lo que más pesa hoy: sostener todo vos","Cuando casi todo depende de vos, tu agenda se vuelve el techo de lo que puede crecer. Delegar no es repartir tareas: es pasar a controlar el resultado y no el paso a paso.","sostener todo sola o solo"],
+    equilibrio:["Lo que más pesa hoy: el espacio para tu vida","El equilibrio rara vez se recupera con fuerza de voluntad. Se recupera cuando las horas que hoy se van en lo que no te corresponde vuelven a tus manos y tienen un destino decidido.","no tener espacio para su vida"]
+  };
+
+  function blank(){ return {t:[0,0,0,0,0,0], n:{claridad:5,confianza:5,sobrecarga:5,equilibrio:5}, d:[{x:"",s:"",f:""},{x:"",s:"",f:""},{x:"",s:"",f:""}], pick:-1, scene:"a",
+    c:{nombre:"",whatsapp:"",email:"",instagram:IG_URL,pais:"",empresa:"",rol:"",equipo:"",cuando:"",inversion:"",consent:false}, sent:0, pending:null}; }
+  var st = blank();
+  try { var raw = localStorage.getItem(KEY); if (raw) { var o = JSON.parse(raw); if (o && o.t && o.n && o.d && o.c) { st = Object.assign(st, o); if (IG_URL && !st.c.instagram) st.c.instagram = IG_URL; } } } catch(e) {}
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e) {} }
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function fill(r){ r.style.setProperty("--p", (r.value - r.min) / (r.max - r.min) * 100 + "%"); }
+  function fmt(n){ return (Math.round(n*10)/10).toString().replace(".",","); }
+  function opts(sel, list){ list.forEach(function(v){ var o=document.createElement("option"); o.textContent=v; sel.appendChild(o); }); }
+  var WEEKS60 = 60/7;
+
+  /* ── construir pasos 1–3 ── */
+  $("tasks").innerHTML = TASKS.map(function(t,i){
+    return '<div class="row"><div class="top"><label for="t'+i+'">'+t[0]+'</label><div class="val"><span id="tv'+i+'">0</span><small>h/sem</small></div></div>'+
+      '<div class="hint">'+t[1]+'</div><input type="range" id="t'+i+'" min="0" max="15" step="0.5" value="'+st.t[i]+'"></div>';
+  }).join("");
+  $("nums").innerHTML = NUMS.map(function(n){
+    return '<div class="row"><div class="top"><label for="n_'+n[0]+'"><b>'+n[1]+'</b></label><div class="val" id="nv_'+n[0]+'">5</div></div>'+
+      '<div class="hint">'+n[2]+'</div><input type="range" id="n_'+n[0]+'" min="0" max="10" step="1" value="'+st.n[n[0]]+'">'+
+      '<div class="ends"><span>0</span><span>10</span></div></div>';
+  }).join("");
+  var EJ = ["Ej.: contratar a alguien que me reemplace en ventas","Ej.: dejar de atender a cierto tipo de cliente","Ej.: cambiar la forma en que reviso el trabajo del equipo"];
+  var dh = "";
+  for (var i=0;i<3;i++){
+    dh += '<div class="dec" id="dec'+i+'"><div class="n">Decisión '+(i+1)+'</div>'+
+      '<input type="text" id="dx'+i+'" maxlength="120" placeholder="'+EJ[i]+'">'+
+      '<div class="two"><select id="ds'+i+'" aria-label="Hace cuánto la postergás"><option value="">¿Hace cuánto la postergás?</option>'+DESDE.map(function(d){return '<option>'+d+'</option>';}).join("")+'</select>'+
+      '<select id="df'+i+'" aria-label="Qué te frena"><option value="">¿Qué te frena?</option>'+FRENO.map(function(d){return '<option>'+d+'</option>';}).join("")+'</select></div>'+
+      '<label class="pick"><input type="radio" name="pick" value="'+i+'"> Esta es la que ordena las demás</label></div>';
+  }
+  $("decs").innerHTML = dh;
+  opts($("f_rol"),ROL); opts($("f_equipo"),EQUIPO); opts($("f_cuando"),CUANDO); opts($("f_inversion"),INVERSION);
+  ["nombre","whatsapp","email","instagram","pais","empresa","rol","equipo","cuando","inversion"].forEach(function(k){ $("f_"+k).value = st.c[k] || ""; });
+  $("f_consent").checked = !!st.c.consent;
+
+  /* ── cálculos ── */
+  function hours(){ return st.t.reduce(function(a,b){return a + Number(b);},0); }
+  function avg(){ var n=st.n; return (n.claridad + n.confianza + (10-n.sobrecarga) + n.equilibrio)/4; }
+  function worstDim(){ var n=st.n, e={claridad:n.claridad, confianza:n.confianza, sobrecarga:10-n.sobrecarga, equilibrio:n.equilibrio};
+    return Object.keys(e).sort(function(a,b){return e[a]-e[b];})[0]; }
+  function chosen(){
+    var p = st.pick >= 0 && st.d[st.pick] && st.d[st.pick].x.trim() ? st.pick : st.d.findIndex(function(d){return d.x.trim();});
+    return p >= 0 ? st.d[p] : null;
+  }
+
+  /* Nivel de preparación. Listo = perfil + urgencia + inversión + al menos dos señales de dolor. */
+  function nivel(){
+    var c = st.c, motivos = [], h60 = hours()*WEEKS60, ch = chosen();
+    var perfil = c.rol === ROL[0] || c.rol === ROL[1] || (c.rol === ROL[2] && c.equipo && c.equipo !== EQUIPO[0]);
+    motivos.push((perfil?"✔ ":"✘ ")+"Perfil: "+(c.rol||"sin dato")+" · equipo: "+(c.equipo||"sin dato"));
+    var urg = c.cuando === CUANDO[0] ? 2 : c.cuando === CUANDO[1] ? 1 : 0;
+    motivos.push((urg?"✔ ":"✘ ")+"Quiere empezar: "+(c.cuando||"sin dato"));
+    var inv = c.inversion === INVERSION[0] ? 2 : c.inversion === INVERSION[1] ? 1 : 0;
+    motivos.push((inv===2?"✔ ":inv===1?"~ ":"✘ ")+"Inversión: "+(c.inversion||"sin dato"));
+    var dolor = [];
+    if (h60 >= 40) dolor.push(Math.round(h60)+" h en 60 días en lo que no le corresponde");
+    if (st.n.sobrecarga >= 7) dolor.push("sobrecarga "+st.n.sobrecarga+"/10");
+    if (avg() <= 5) dolor.push("promedio "+fmt(avg())+"/10");
+    if (ch && ch.s && DESDE.indexOf(ch.s) >= 2) dolor.push("decisión postergada "+ch.s.toLowerCase());
+    motivos.push((dolor.length>=2?"✔ ":dolor.length?"~ ":"✘ ")+"Señales de dolor ("+dolor.length+"): "+(dolor.join("; ")||"ninguna fuerte"));
+    var k;
+    if (perfil && urg >= 1 && inv === 2 && dolor.length >= 2) k = "listo";
+    else if (perfil && (urg >= 1 || inv >= 1) && dolor.length >= 1) k = "tibio";
+    else k = "no";
+    return {k:k, motivos:motivos, etiqueta:{listo:"LISTO PARA INGRESAR",tibio:"TIBIO, NUTRIR",no:"TODAVÍA NO"}[k]};
+  }
+
+  /* ── pintar ── */
+  function renderInputs(){
+    st.t.forEach(function(v,i){ $("tv"+i).textContent = fmt(v); fill($("t"+i)); });
+    $("tally").textContent = fmt(hours());
+    NUMS.forEach(function(n){ $("nv_"+n[0]).textContent = st.n[n[0]]; fill($("n_"+n[0])); });
+    st.d.forEach(function(d,i){
+      var dx=$("dx"+i); if (document.activeElement !== dx) dx.value = d.x;
+      $("ds"+i).value = d.s; $("df"+i).value = d.f;
+      $("dec"+i).classList.toggle("chosen", st.pick === i);
+      document.querySelector('input[name=pick][value="'+i+'"]').checked = st.pick === i;
+    });
+  }
+
+  function renderResults(){
+    var hw = hours(), h60 = hw*WEEKS60, n = st.n, c = chosen(), nv = nivel();
+    var nombre = (st.c.nombre.trim().split(/\s+/)[0]) || "";
+    $("rTitle").innerHTML = (nombre ? esc(nombre)+", esto" : "Esto")+" es lo que <em>mostraron tus respuestas.</em>";
+    var V = {
+      listo:["Es un buen momento para trabajarlo","Tus respuestas muestran tres cosas a la vez: lo que estás sosteniendo te está costando horas y energía, querés moverte pronto y estás en condiciones de hacerlo. El equipo de Romina ya tiene tus resultados y te va a escribir por WhatsApp para coordinar una conversación."],
+      tibio:["Hay señales claras, y vale la pena mirarlas","Lo que respondiste muestra un costo real, aunque quizás no sea el momento exacto para empezar. El equipo de Romina ya tiene tus resultados: si querés conversar antes, respondé el mensaje por donde te llegó esta guía."],
+      no:["Quizás todavía no sea el momento de un proceso 1 a 1","Y está bien. Guardá estos resultados y volvé a medir tus cuatro números en un mes: si se mueven solos, perfecto; si no se mueven, ya sabés dónde mirar."]
+    }[nv.k];
+    $("verdict").innerHTML = '<h3>'+V[0]+'</h3><p>'+V[1]+'</p>';
+
+    $("hWeek").innerHTML = fmt(hw)+"<small>h</small>";
+    $("h60").innerHTML = Math.round(h60)+"<small>h</small>";
+    $("hNote").textContent = hw === 0 ? "No marcaste horas en el paso 1. Si igual te cuesta encontrar una hora cada quince días, el tiempo no es el problema: mirá tus cuatro números."
+      : h60 < 4 ? "Tu agenda está bastante limpia. Si igual te cuesta encontrar una hora cada quince días, el tiempo no es el problema: mirá tus cuatro números."
+      : "En dos meses son unas "+Math.round(h60)+" horas en cosas que podría sostener otra persona o un sistema: "+Math.round(h60/4)+" veces las cuatro horas de sesiones que pide un proceso de 60 días. El tiempo existe; está ocupado.";
+
+    $("bars").innerHTML = NUMS.map(function(x){
+      var v = n[x[0]], eff = x[3] ? 10 - v : v;
+      return '<div class="bar'+(eff<=4?" low":"")+'"><div class="bl"><b>'+x[1]+'</b><span>'+v+' / 10'+(x[3]?' <span style="color:var(--ink3)">(acá, más es peor)</span>':'')+'</span></div><div class="track"><div class="fill" style="width:'+(v*10)+'%"></div></div></div>';
+    }).join("");
+    var w = worstDim();
+    $("reading").innerHTML = '<h3>'+R[w][0]+'</h3><p>'+R[w][1]+'</p><p style="font-size:14.5px;color:var(--ink3)">Promedio de tus cuatro números: <b style="color:var(--ink)">'+fmt(avg())+' / 10</b> (la sobrecarga se cuenta al revés). Es una foto de hoy, no un diagnóstico.</p>';
+
+    if (c) { $("decBlock").hidden = false;
+      $("decReading").innerHTML = '<h3>Sobre «'+esc(c.x.trim())+'»</h3><p>'+(c.f ? FRENO_TXT[c.f] : "Ya tiene nombre, y eso es el primer paso: lo que no se nombra no se decide.")+'</p>';
+    } else $("decBlock").hidden = true;
+
+    var months = c && c.s ? DESDE_M[DESDE.indexOf(c.s)] : null;
+    var decName = c ? "«"+esc(c.x.trim())+"»" : "La decisión que venís postergando";
+    $("sceneA").innerHTML = '<h3>Si nada cambia</h3><ul>'+
+      '<li>Se van <b>'+(hw?Math.round(h60)+' horas':'tus horas')+'</b> en lo mismo de siempre: mensajes, revisiones, incendios.</li>'+
+      '<li>'+decName+' sigue abierta'+(months!==null?', y ya lleva <b>unos '+fmt(months+2)+' meses</b> postergada':'')+'.</li>'+
+      '<li>Tus números siguen donde están: claridad en <b>'+n.claridad+'</b>, sobrecarga en <b>'+n.sobrecarga+'</b>.</li>'+
+      '<li>La pregunta de hoy, «¿cuándo tengo tiempo para esto?», sigue teniendo la misma respuesta.</li></ul>';
+    $("sceneB").innerHTML = '<h3>Si te ocupás</h3><ul>'+
+      '<li>Cuatro horas, una cada quince días, para mirar con método '+(hw?'dónde se van las otras <b>'+Math.round(h60)+' horas</b>':'dónde se va tu tiempo')+'.</li>'+
+      '<li>'+decName+' se trabaja con fecha y con un criterio escrito, no a fuerza de pensarla otra vez.</li>'+
+      '<li>Medís tus cuatro números al empezar y al terminar. Sabés si algo se movió, sin depender de cómo te sentís ese día.</li>'+
+      '<li>Lo que hoy depende de vos empieza a sostenerse a través de otras personas.</li></ul>';
+    document.querySelectorAll(".toggle button").forEach(function(b){ var on = b.dataset.scene === st.scene; b.classList.toggle("on",on); b.setAttribute("aria-selected",on); });
+    $("sceneA").classList.toggle("on", st.scene==="a"); $("sceneB").classList.toggle("on", st.scene==="b");
+  }
+
+  /* ── armar el envío: etiquetas compatibles con la skill diagnosticos-crm ── */
+  function payload(){
+    var c = st.c, hw = hours(), ch = chosen(), nv = nivel(), w = worstDim();
+    var decs = st.d.filter(function(d){return d.x.trim();}).map(function(d,i){
+      return "• "+d.x.trim()+(d.s?" ("+d.s.toLowerCase()+")":"")+(d.f?" — frena: "+d.f.toLowerCase():"")+(d===ch?" ★ la que ordena las demás":"");
+    }).join("\n") || "—";
+    var tareas = TASKS.map(function(t,i){return [t[0],st.t[i]];}).filter(function(x){return x[1]>0;})
+      .sort(function(a,b){return b[1]-a[1];}).map(function(x){return "• "+x[0]+": "+fmt(x[1])+" h/sem";}).join("\n") || "—";
+    var nombre = c.nombre.trim();
+    return {
+      "_subject": "Nuevo diagnóstico · "+nv.etiqueta+" · "+nombre+" · guía «"+PALABRA+"»"+(st.sent?" (actualización)":""),
+      "_template": "table",
+      "_captcha": "false",
+      "Nivel": nv.etiqueta,
+      "Motivos del nivel": nv.motivos.join("\n"),
+      "Nombre y apellido": nombre,
+      "WhatsApp": c.whatsapp.trim(),
+      "Email": c.email.trim() || "—",
+      "Instagram": c.instagram.trim() || "—",
+      "País": c.pais.trim() || "—",
+      "Empresa o proyecto": c.empresa.trim() || "—",
+      "Rol actual": c.rol,
+      "Tamaño del equipo": c.equipo,
+      "Cuándo quiere empezar": c.cuando,
+      "Inversión en un proceso 1 a 1": c.inversion,
+      "Mayor problema, dificultad o preocupación": "Lo que más le pesa: "+R[w][2]+". "+fmt(hw)+" h por semana ("+Math.round(hw*WEEKS60)+" h en 60 días) en tareas que podría sostener otra persona."+(ch?" Posterga: "+ch.x.trim()+(ch.f?" (frena: "+ch.f.toLowerCase()+")":"")+".":""),
+      "Objetivo con Claridad Privada": ch ? "Resolver: "+ch.x.trim() : "—",
+      "Claridad (0-10)": st.n.claridad,
+      "Confianza (0-10)": st.n.confianza,
+      "Sobrecarga (0-10, más es peor)": st.n.sobrecarga,
+      "Equilibrio (0-10)": st.n.equilibrio,
+      "Promedio": fmt(avg()),
+      "Horas por semana delegables": fmt(hw),
+      "Dónde se le va el tiempo": tareas,
+      "Decisiones postergadas": decs,
+      "Palabra comentada": PALABRA,
+      "Origen": "guia-reel",
+      "Enviado desde": location.href.split("#")[0]
+    };
+  }
+  function send(data){
+    return fetch(ENDPOINT, {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body:JSON.stringify(data)})
+      .then(function(r){ return r.json().catch(function(){ return {}; }); })
+      .then(function(j){ if (String(j.success) !== "true") throw new Error(j.message || "envío rechazado"); return j; });
+  }
+
+  /* ── validación ── */
+  function validate(){
+    var ok = true, c = st.c;
+    function mark(k, bad){ document.querySelector('.field[data-f="'+k+'"]').classList.toggle("bad", bad); if (bad) ok = false; }
+    mark("nombre", c.nombre.trim().split(/\s+/).length < 2 || c.nombre.trim().length < 4);
+    mark("whatsapp", !/^\+?[\d\s\-().]{8,20}$/.test(c.whatsapp.trim()) || c.whatsapp.replace(/\D/g,"").length < 8);
+    mark("email", !!c.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(c.email.trim()));
+    mark("rol", !c.rol); mark("equipo", !c.equipo); mark("cuando", !c.cuando); mark("inversion", !c.inversion);
+    $("consentWrap").classList.toggle("bad", !c.consent); if (!c.consent) ok = false;
+    return ok;
+  }
+
+  function reveal(){
+    $("resultados").hidden = false; $("navRes").classList.remove("locked");
+    renderResults();
+  }
+
+  /* ── eventos ── */
+  st.t.forEach(function(_,i){ $("t"+i).addEventListener("input", function(e){ st.t[i] = Number(e.target.value); renderInputs(); save(); }); });
+  NUMS.forEach(function(nn){ $("n_"+nn[0]).addEventListener("input", function(e){ st.n[nn[0]] = Number(e.target.value); renderInputs(); save(); }); });
+  for (var j=0;j<3;j++)(function(i){
+    $("dx"+i).addEventListener("input", function(e){ st.d[i].x = e.target.value; renderInputs(); save(); });
+    $("ds"+i).addEventListener("change", function(e){ st.d[i].s = e.target.value; renderInputs(); save(); });
+    $("df"+i).addEventListener("change", function(e){ st.d[i].f = e.target.value; renderInputs(); save(); });
+  })(j);
+  document.querySelectorAll("input[name=pick]").forEach(function(r){ r.addEventListener("change", function(){ st.pick = Number(r.value); renderInputs(); save(); }); });
+  ["nombre","whatsapp","email","instagram","pais","empresa"].forEach(function(k){ $("f_"+k).addEventListener("input", function(e){ st.c[k] = e.target.value; save(); }); });
+  ["rol","equipo","cuando","inversion"].forEach(function(k){ $("f_"+k).addEventListener("change", function(e){ st.c[k] = e.target.value; save(); }); });
+  $("f_consent").addEventListener("change", function(e){ st.c.consent = e.target.checked; save(); });
+  document.querySelectorAll(".toggle button").forEach(function(b){ b.addEventListener("click", function(){ st.scene = b.dataset.scene; renderResults(); save(); }); });
+
+  $("form").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    $("formErr").textContent = "";
+    if (!validate()) { $("formErr").textContent = "Revisá los campos marcados."; var b = document.querySelector(".field.bad, .consent.bad"); if (b) b.scrollIntoView({behavior:"smooth",block:"center"}); return; }
+    var data = payload(), btn = $("go");
+    btn.disabled = true; btn.textContent = "Preparando tus resultados…";
+    send(data).then(function(){
+      st.sent = Date.now(); st.pending = null; save();
+    }).catch(function(){
+      /* Si el envío falla, la persona igual ve sus resultados; el envío queda pendiente y se reintenta al volver a abrir la guía. */
+      st.pending = data; save();
+    }).then(function(){
+      btn.disabled = false; btn.textContent = "Actualizar mis resultados";
+      reveal();
+      $("resultados").scrollIntoView({behavior:"smooth"});
+    });
+  });
+
+  /* reintento de un envío que quedó pendiente */
+  if (st.pending) send(st.pending).then(function(){ st.sent = Date.now(); st.pending = null; save(); }).catch(function(){});
+
+  var links = document.querySelectorAll(".steps a");
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) links.forEach(function(l){ l.classList.toggle("on", l.dataset.s === e.target.id); }); });
+    }, {rootMargin:"-45% 0px -50% 0px"});
+    document.querySelectorAll("section.paso").forEach(function(s){ io.observe(s); });
+  }
+
+  renderInputs();
+  if (st.sent || st.pending) { reveal(); $("go").textContent = "Actualizar mis resultados"; }
+})();
+</script>
+</body>
+</html>
