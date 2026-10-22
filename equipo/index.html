@@ -1,1 +1,675 @@
-guia equipo
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía Equipo</title>
+<meta name="description" content="Ordená la conversación antes de corregir: las preguntas que usa Romina Carzoglio cuando alguien de su equipo no cumple, para que quien cumple no termine pagando.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Claridad Privada: arena clara y la tipografía del logo. Misma base que la guía «claridad». */
+:root{
+  --bg:#FBF8F3; --bg2:#F2EADF; --card:#FFFFFF;
+  --ink:#2F2A26; --ink2:rgba(47,42,38,.74); --ink3:rgba(47,42,38,.54);
+  --terra:#BCA78F; --terra-deep:#7A6654; --rosa:#D9C9B5; --rosa-soft:#EAE0D2;
+  --line:rgba(122,102,84,.22); --line-soft:rgba(122,102,84,.12);
+  --good:#5F7550; --warn:#A8662F; --err:#A4473A;
+  --serif:"Cormorant Garamond","Playfair Display",Georgia,serif; --sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --ease:cubic-bezier(.32,.72,0,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;font-weight:400}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+em{font-family:var(--serif);font-style:italic;font-weight:400}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15;letter-spacing:-.01em}
+h1{font-size:clamp(42px,10.5vw,66px)}
+h2{font-size:clamp(31px,7.6vw,42px);margin-bottom:12px}
+h3{font-size:25px;margin-bottom:6px}
+p{color:var(--ink2)}
+p+p{margin-top:10px}
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-deep);font-weight:600}
+
+.brand{display:flex;justify-content:center;padding:22px 0 6px}
+.brand img{width:min(190px,52vw);height:auto;mix-blend-mode:multiply}
+.hero{padding:18px 0 40px;border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;gap:28px;align-items:center}
+.hero .photo{border-radius:22px;overflow:hidden;background:var(--bg2);aspect-ratio:4/5;max-width:100%;max-height:540px}
+.hero .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block}
+.hero .text{min-width:0}
+@media (min-width:860px){.hero .wrap{max-width:1040px;grid-template-columns:400px minmax(0,1fr);gap:48px}}
+.hero .kicker{margin-bottom:22px}
+.hero h1 em{color:var(--terra-deep)}
+.hero .lead{font-size:19px;margin-top:20px}
+.quote{margin-top:28px;padding:18px 20px;border-left:2px solid var(--terra);background:var(--bg2);border-radius:0 12px 12px 0}
+.quote p{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink)}
+.quote small{display:block;margin-top:8px;font-size:13px;color:var(--ink3)}
+.meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:26px;font-size:14px;color:var(--ink3)}
+.meta span+span::before{content:"·";margin-right:8px;color:var(--terra)}
+
+.steps{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft)}
+.steps .wrap{display:flex;gap:6px;padding-top:10px;padding-bottom:10px}
+.steps a{flex:1;min-width:0;text-decoration:none;font-size:12px;color:var(--ink3);text-align:center;padding:6px 2px;border-radius:999px;transition:all .3s var(--ease);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.steps a b{display:block;font-family:var(--serif);font-weight:500;font-size:16px;color:var(--ink2)}
+.steps a.on{background:var(--bg2);color:var(--terra-deep)}
+.steps a.on b{color:var(--terra-deep)}
+.steps a.locked{opacity:.45;pointer-events:none}
+
+section.paso{padding:52px 0;border-bottom:1px solid var(--line)}
+.paso .kicker{margin-bottom:12px}
+.paso p.intro{margin-bottom:26px}
+.sub{font-family:var(--serif);font-size:23px;color:var(--ink);margin:30px 0 10px}
+
+/* tarjetas y controles */
+.row{background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:16px 18px;margin-bottom:10px}
+.row .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.row label,.row .lab{font-size:15.5px;color:var(--ink);line-height:1.4}
+.row .val{font-family:var(--serif);font-size:24px;color:var(--terra-deep);min-width:56px;text-align:right;white-space:nowrap}
+.row .val small{font-family:var(--sans);font-size:12px;color:var(--ink3);margin-left:2px}
+.row .hint{font-size:13.5px;color:var(--ink3);margin-top:2px}
+.row.on{border-color:var(--terra-deep);box-shadow:0 0 0 1px var(--terra-deep)}
+.row .n{font-family:var(--serif);font-style:italic;color:var(--terra-deep);font-size:15px;margin-bottom:6px}
+input[type=range]{width:100%;margin-top:12px;-webkit-appearance:none;appearance:none;height:28px;background:transparent}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(to right,var(--terra) var(--p,0%),var(--line) var(--p,0%))}
+input[type=range]::-moz-range-track{height:4px;border-radius:4px;background:var(--line)}
+input[type=range]::-moz-range-progress{height:4px;border-radius:4px;background:var(--terra)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--card);border:2px solid var(--terra-deep);margin-top:-10px;box-shadow:0 2px 6px rgba(47,42,38,.15)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--card);border:2px solid var(--terra-deep)}
+.ends{display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-top:-2px}
+
+input[type=text],input[type=tel],input[type=email],input[type=number],input[type=date],select,textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px;outline:none;transition:border .2s}
+textarea{resize:vertical;min-height:84px;line-height:1.5}
+input:focus,select:focus,textarea:focus{border-color:var(--terra-deep)}
+.row input[type=text],.row select,.row textarea,.row input[type=number],.row input[type=date]{margin-top:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:440px){.two{grid-template-columns:1fr}}
+
+/* botones de opción */
+.seg{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.seg button,.chip{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--bg);color:var(--ink2);padding:8px 13px;border-radius:999px;cursor:pointer;transition:all .2s var(--ease);line-height:1.3;text-align:left}
+.seg button:hover,.chip:hover{border-color:var(--terra)}
+.seg button.on,.chip.on{background:var(--terra-deep);border-color:var(--terra-deep);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chk{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:14px 16px;margin-bottom:8px;cursor:pointer;font-size:15.5px;color:var(--ink);line-height:1.45;transition:border .2s}
+.chk input{accent-color:var(--terra-deep);width:20px;height:20px;flex:none;margin-top:1px}
+.chk.on{border-color:var(--terra-deep)}
+.chk small{display:block;color:var(--ink3);font-size:13.5px;margin-top:2px}
+
+/* lectura en vivo */
+.live{margin-top:18px;background:var(--bg2);border:1px solid var(--line-soft);border-radius:16px;padding:18px 20px}
+.live .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.live .big{font-family:var(--serif);font-size:clamp(40px,11vw,58px);line-height:1;color:var(--terra-deep)}
+.live .big small{font-family:var(--sans);font-size:15px;color:var(--ink3);margin-left:6px}
+.live p{font-size:15.5px;margin-top:8px}
+.live .split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.live .split .big{font-size:34px}
+
+/* contenido de valor */
+.qs{list-style:none;counter-reset:q;display:grid;gap:12px;margin-top:6px}
+.qs li{counter-increment:q;position:relative;padding:14px 16px 14px 52px;background:var(--card);border:1px solid var(--line-soft);border-radius:14px;color:var(--ink);font-size:16px}
+.qs li::before{content:counter(q);position:absolute;left:18px;top:11px;font-family:var(--serif);font-style:italic;font-size:24px;color:var(--terra-deep)}
+.qs li small{display:block;color:var(--ink3);font-size:13.5px;margin-top:4px}
+.moment{margin-top:26px}
+.moment>.kicker{display:block;margin-bottom:6px}
+.moment>p{font-size:15.5px;margin-bottom:12px}
+.note{font-size:14.5px;color:var(--ink3);margin-top:12px}
+.card{background:var(--card);border:1px solid var(--line-soft);border-radius:16px;padding:18px 20px;margin-bottom:10px}
+.card h3{font-size:22px}
+.card p{font-size:15.5px}
+.open{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;font:inherit;font-size:16px;color:var(--ink);background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:15px 18px;cursor:pointer;text-align:left;margin-bottom:8px}
+.open::after{content:"+";font-family:var(--serif);font-size:26px;line-height:1;color:var(--terra-deep);transition:transform .3s var(--ease)}
+.open[aria-expanded=true]{border-color:var(--terra);border-bottom-left-radius:0;border-bottom-right-radius:0;margin-bottom:0}
+.open[aria-expanded=true]::after{transform:rotate(45deg)}
+.opened{display:none;background:var(--bg2);border:1px solid var(--terra);border-top:0;border-radius:0 0 14px 14px;padding:16px 18px;margin-bottom:8px}
+.opened.on{display:block;animation:in .4s var(--ease)}
+.opened p{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--ink);line-height:1.4}
+.opened small{display:block;margin-top:8px;font-size:14px;color:var(--ink2);font-family:var(--sans)}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+@media (max-width:560px){.cols3{grid-template-columns:1fr}}
+.col{background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:14px}
+.col h4{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--terra-deep)}
+.col .h{font-size:13px;color:var(--ink3);margin-bottom:8px}
+.col ul{list-style:none;display:grid;gap:6px;font-size:14px;color:var(--ink2)}
+
+/* formulario */
+.form{display:grid;gap:14px}
+.field label{display:block;font-size:14.5px;font-weight:500;color:var(--ink);margin-bottom:6px}
+.field label .opt{font-weight:400;color:var(--ink3)}
+.field .help{font-size:13px;color:var(--ink3);margin-top:4px}
+.field.bad input,.field.bad select{border-color:var(--err)}
+.field .msg{font-size:13px;color:var(--err);margin-top:4px;display:none}
+.field.bad .msg{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:480px){.grid2{grid-template-columns:1fr}}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink2);cursor:pointer}
+.consent input{accent-color:var(--terra-deep);width:20px;height:20px;flex:none;margin-top:2px}
+.consent.bad{color:var(--err)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-size:17px;font-weight:600;border:0;border-radius:999px;padding:16px 24px;cursor:pointer;background:var(--terra-deep);color:#FFFFFF;transition:transform .2s var(--ease),opacity .2s;width:100%;margin-top:8px}
+.btn:active{transform:scale(.98)}
+.btn[disabled]{opacity:.6;cursor:wait}
+.btn.ghost{background:transparent;color:var(--terra-deep);border:1px solid var(--terra-deep)}
+.formerr{font-size:14px;color:var(--err);text-align:center;min-height:20px}
+.privacy{font-size:13px;color:var(--ink3);margin-top:10px;text-align:center}
+
+/* resultados */
+#resultados[hidden]{display:none}
+.verdict{border-radius:18px;padding:24px 22px;background:var(--bg2);border:1px solid var(--line-soft);margin-bottom:26px}
+.verdict h3{font-size:24px;color:var(--terra-deep);margin-bottom:8px}
+.block{margin-top:40px}
+.block > .kicker{display:block;margin-bottom:10px}
+.result{margin-top:12px;background:var(--bg2);color:var(--ink);border:1px solid var(--line-soft);border-radius:18px;padding:24px 22px}
+.result .big{font-family:var(--serif);font-size:clamp(46px,12.5vw,68px);line-height:1;color:var(--terra-deep)}
+.result .big small{font-family:var(--sans);font-size:15px;opacity:.7;margin-left:6px}
+.result .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.65;margin-bottom:8px}
+.result .split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.result .split .big{font-size:36px}
+.result .note{color:var(--ink2);font-size:15px}
+.bars{margin-top:16px;display:grid;gap:14px}
+.bar .bl{display:flex;justify-content:space-between;gap:10px;font-size:14px;margin-bottom:6px}
+.bar .bl b{font-weight:600}
+.bar .track{height:10px;border-radius:10px;background:var(--line-soft);overflow:hidden}
+.bar .fill{height:100%;border-radius:10px;background:var(--terra);transition:width .5s var(--ease)}
+.bar.low .fill{background:var(--warn)}
+.reading{margin-top:18px;padding:20px;border-radius:14px;background:var(--bg2);border:1px solid var(--line-soft)}
+.reading h3{color:var(--terra-deep)}
+.reading ul,.sheet ul{margin:10px 0 0 18px;display:grid;gap:6px;color:var(--ink2);font-size:15.5px}
+.sheet{margin-top:14px;background:var(--card);border:1px dashed var(--terra);border-radius:16px;padding:22px}
+.sheet h3{font-size:24px}
+.sheet .line{padding:10px 0;border-bottom:1px solid var(--line-soft);font-size:15.5px;color:var(--ink)}
+.sheet .line:last-child{border-bottom:0}
+.sheet .line span{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:2px}
+.sheet .letter{font-family:var(--serif);font-size:21px;line-height:1.5;color:var(--ink)}
+.sheet .letter p{color:var(--ink)}
+.program{margin-top:40px;padding:24px 22px;border-radius:18px;background:var(--bg2)}
+.program > p{margin-top:6px}
+.program ul{list-style:none;margin-top:14px;display:grid;gap:10px}
+.program li{display:flex;gap:12px;font-size:15.5px;color:var(--ink2)}
+.program li span{font-family:var(--serif);font-style:italic;color:var(--terra-deep);min-width:34px}
+.program .enc{margin-top:18px;display:grid;gap:10px}
+.program .enc div{background:var(--card);border-radius:12px;padding:12px 14px;font-size:15px;color:var(--ink2)}
+.program .enc b{display:block;font-family:var(--serif);font-weight:500;font-size:19px;color:var(--ink)}
+.print{margin-top:26px}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+footer{padding:40px 0 56px;text-align:center;font-size:13px;color:var(--ink3)}
+footer .sig{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ink);margin-bottom:6px}
+
+@media print{
+  body{font-size:14px;background:#fff}
+  body.res .hero,body.res .steps,body.res section.paso:not(#resultados),.print,.program,.verdict{display:none!important}
+  .brand{padding-top:0}
+  #resultados{padding-top:0}
+  .block{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="brand"><img src="../logo.jpg" alt="Claridad Privada, Romina Carzoglio" width="640" height="416"></div>
+<header class="hero">
+  <div class="wrap">
+    <div class="text">
+    <div class="kicker" id="hKicker"></div>
+    <h1>Ordená la conversación antes de <em>corregir.</em></h1>
+    <p class="lead">Cuando alguien de tu equipo no cumple, reaccionar rápido puede darte una respuesta. Hacer las preguntas correctas puede darte una solución. Son tres pasos cortos y al final te llevás tu hoja para la charla.</p>
+    <div class="quote">
+      <p>«Cuidar a tu equipo también es impedir que quien cumple termine pagando por quien no.»</p>
+      <small>Romina Carzoglio, en el video que te trajo hasta acá</small>
+    </div>
+    <div class="meta"><span>5 minutos</span><span>3 pasos</span><span>Tu hoja para la charla al final</span></div>
+    </div>
+  </div>
+</header>
+<nav class="steps" aria-label="Pasos">
+  <div class="wrap">
+    <a href="#p1" data-s="p1"><b>1</b>Qué pasó</a>
+    <a href="#p2" data-s="p2"><b>2</b>Tu claridad</a>
+    <a href="#p3" data-s="p3"><b>3</b>La charla</a>
+    <a href="#datos" data-s="datos"><b>4</b>Tus datos</a>
+    <a href="#resultados" data-s="resultados" class="locked" id="navRes"><b>5</b>Resultados</a>
+  </div>
+</nav>
+
+<main>
+<style>
+/* Paleta fusionada: blanco, gris y arena. */
+:root{
+  --bg:#FFFFFF; --bg2:#F3EEE6; --card:#FFFFFF;
+  --ink:#3D4044; --ink2:rgba(61,64,68,.76); --ink3:rgba(61,64,68,.55);
+  --terra:#D6C7AF; --terra-deep:#5E6267; --rosa:#E5DACA; --rosa-soft:#F6F2EC;
+  --line:rgba(94,98,103,.2); --line-soft:rgba(94,98,103,.11);
+  --arena:#A88F68; --gris:#F4F4F3;
+}
+.hero .wrap{grid-template-columns:1fr!important;max-width:680px!important}
+.hero h1 em,h2 em{color:var(--arena)}
+.quote{background:var(--bg2);border-left-color:var(--terra)}
+.cl{background:var(--gris);border:1px solid var(--line-soft);border-radius:16px;padding:16px 16px 14px;margin-bottom:10px;transition:border .2s,background .2s}
+.cl.ok{background:var(--bg2);border-color:var(--terra)}
+.cl h3{font-size:21px;margin-bottom:2px}
+.cl p{font-size:14.5px;color:var(--ink3)}
+.count{font-size:15px;font-weight:600;color:var(--terra-deep);margin-top:6px}
+.prog{margin:4px 0 14px}
+.prog .r{display:flex;justify-content:space-between;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.prog .b{height:3px;background:var(--line);border-radius:3px;margin-top:8px;overflow:hidden}
+.prog .b i{display:block;height:100%;width:0;background:var(--arena);transition:width .35s}
+.fase{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--arena);margin:20px 0 8px}
+.q{border:1px solid var(--line-soft);border-radius:16px;background:var(--gris);margin-bottom:8px;transition:border-color .2s,background .2s}
+.q[open]{background:#fff;border-color:var(--terra)}
+.q .qh{list-style:none;display:grid;grid-template-columns:34px 1fr 20px;gap:12px;align-items:center;width:100%;padding:13px 14px;background:none;border:0;color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.q .qh:focus-visible{outline:2px solid var(--terra-deep);outline-offset:2px;border-radius:14px}
+.q .num{width:34px;height:34px;border-radius:50%;border:1px solid var(--terra);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--ink3)}
+.q.usar .num{background:var(--terra-deep);border-color:var(--terra-deep);color:#fff}
+.q .qh b{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.25}
+.q .mas{width:20px;height:20px;position:relative}
+.q .mas::before,.q .mas::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--ink3);transform:translate(-50%,-50%);transition:transform .25s}
+.q .mas::after{transform:translate(-50%,-50%) rotate(90deg)}
+.q[open] .mas::before{transform:translate(-50%,-50%) rotate(45deg)}
+.q[open] .mas::after{transform:translate(-50%,-50%) rotate(135deg)}
+.q .qb{padding:0 16px 14px 60px;font-size:15px;color:var(--ink2)}
+.q .usarbtn{margin-top:10px;font:600 13.5px var(--sans);border:1px solid var(--terra-deep);background:#fff;color:var(--terra-deep);padding:7px 13px;border-radius:999px;cursor:pointer}
+.q.usar .usarbtn{background:var(--terra-deep);color:#fff}
+.define{margin-top:22px;text-align:center;padding:22px 16px;background:var(--bg2);border-radius:16px}
+.define h3{font-size:clamp(23px,5.6vw,30px);line-height:1.15;margin:8px auto 8px;max-width:20ch}
+.define p{font-size:15px}
+.q .qh::-webkit-details-marker{display:none}
+@media (max-width:480px){.q .qb{padding-left:16px}.steps .wrap{gap:2px;padding-left:10px;padding-right:10px}.steps a{font-size:11px;padding:6px 0;overflow:visible;text-overflow:clip}.steps a b{font-size:15px}}
+</style>
+
+<section class="paso" id="p1">
+  <div class="wrap">
+    <div class="kicker">Paso 1 · Qué pasó</div>
+    <h2>La última vez que <em>alguien no cumplió.</em></h2>
+    <p class="intro">Pensá en un caso concreto, el que más te molestó este mes.</p>
+    <div class="row">
+      <input type="text" id="sT" maxlength="120" placeholder="¿Qué quedó sin hacer? Ej.: el pedido al proveedor">
+      <input type="text" id="sQ" maxlength="50" placeholder="¿Quién no lo hizo? Nombre o puesto" style="margin-top:10px">
+      <div class="hint" style="margin-top:12px">¿Quién lo terminó resolviendo?</div><div id="segA"><div class="seg" data-name="a"><button type="button" data-v="Yo">Yo</button><button type="button" data-v="Alguien que siempre responde">Alguien que siempre responde</button><button type="button" data-v="Nadie, quedó sin hacer">Nadie, quedó sin hacer</button></div></div>
+      <div class="hint" style="margin-top:12px">¿Pasa seguido?</div><div id="segV"><div class="seg" data-name="v"><button type="button" data-v="Fue la primera vez">Fue la primera vez</button><button type="button" data-v="Ya pasó antes">Ya pasó antes</button><button type="button" data-v="Pasa todo el tiempo">Pasa todo el tiempo</button></div></div>
+    </div>
+    <div class="live" id="live1"></div>
+  </div>
+</section>
+
+<section class="paso" id="p2">
+  <div class="wrap">
+    <div class="kicker">Paso 2 · Revisá tu claridad</div>
+    <h2>Antes de pedir responsabilidad, <em>revisá la tuya.</em></h2>
+    <p class="intro">Cuatro preguntas rápidas. Respondé con honestidad: nadie más las ve.</p>
+    <div id="claridad">
+      <div class="cl" id="cl0"><h3>¿La consigna fue realmente clara?</h3><p>Si explicaste el resultado esperado o diste por hecho que era obvio.</p><div class="seg" data-name="cl0"><button type="button" data-v="Sí">Sí</button><button type="button" data-v="A medias">A medias</button><button type="button" data-v="No">No</button></div></div>
+      <div class="cl" id="cl1"><h3>¿Definiste responsable y fecha?</h3><p>Una tarea sin dueño ni plazo es una intención, no un acuerdo.</p><div class="seg" data-name="cl1"><button type="button" data-v="Sí">Sí</button><button type="button" data-v="A medias">A medias</button><button type="button" data-v="No">No</button></div></div>
+      <div class="cl" id="cl2"><h3>¿Tenía lo necesario para cumplir?</h3><p>Tiempo, información, herramientas y autoridad.</p><div class="seg" data-name="cl2"><button type="button" data-v="Sí">Sí</button><button type="button" data-v="A medias">A medias</button><button type="button" data-v="No">No</button></div></div>
+      <div class="cl" id="cl3"><h3>¿Sabés si es un error o un patrón?</h3><p>No se corrige igual un error aislado que una conducta que se repite.</p><div class="seg" data-name="cl3"><button type="button" data-v="Sí">Sí</button><button type="button" data-v="A medias">A medias</button><button type="button" data-v="No">No</button></div></div>
+    </div>
+    <p class="count" id="cCount" aria-live="polite"></p>
+  </div>
+</section>
+
+<section class="paso" id="p3">
+  <div class="wrap">
+    <div class="kicker">Paso 3 · Conversá sin rescatar</div>
+    <h2>Las preguntas que <em>uso yo.</em></h2>
+    <p class="intro">Tocá una pregunta para ver qué busca revelar y marcá las que vas a usar. Con dos o tres alcanza; si no marcás ninguna, te dejo las esenciales en tu hoja.</p>
+    <div class="prog"><div class="r"><span>Para tu hoja</span><span id="qCount">0 elegidas</span></div><div class="b"><i id="qBar"></i></div></div>
+    <div id="preguntas">
+      <div class="fase">Entender el contexto</div>
+      <details class="q" id="q0"><summary class="qh"><span class="num">1</span><b>¿Qué entendiste que tenías que hacer?</b><span class="mas" aria-hidden="true"></span></summary><div class="qb"><div>Te muestra si hubo un incumplimiento o una diferencia entre lo que vos dijiste y lo que la otra persona comprendió.</div><button class="usarbtn" type="button" data-u="0" aria-pressed="false">Usar en mi charla</button></div></details>
+      <details class="q" id="q1"><summary class="qh"><span class="num">2</span><b>¿Qué parte del acuerdo no se cumplió?</b><span class="mas" aria-hidden="true"></span></summary><div class="qb"><div>Lleva la conversación a hechos concretos y evita que se pierda en generalidades.</div><button class="usarbtn" type="button" data-u="1" aria-pressed="false">Usar en mi charla</button></div></details>
+      <details class="q" id="q2"><summary class="qh"><span class="num">3</span><b>¿Qué ocurrió concretamente?</b><span class="mas" aria-hidden="true"></span></summary><div class="qb"><div>Da lugar al contexto sin convertir la explicación en una excusa.</div><button class="usarbtn" type="button" data-u="2" aria-pressed="false">Usar en mi charla</button></div></details>
+      <details class="q" id="q3"><summary class="qh"><span class="num">4</span><b>¿Cuándo supiste que no ibas a cumplir y por qué no lo comunicaste?</b><span class="mas" aria-hidden="true"></span></summary><div class="qb"><div>Permite trabajar la anticipación. Muchas crisis no nacen del error, sino del silencio.</div><button class="usarbtn" type="button" data-u="3" aria-pressed="false">Usar en mi charla</button></div></details>
+      <div class="fase">Pedir responsabilidad</div>
+      <details class="q" id="q4"><summary class="qh"><span class="num">5</span><b>¿Qué responsabilidad asumís en lo que pasó?</b><span class="mas" aria-hidden="true"></span></summary><div class="qb"><div>La persona deja de describir el problema desde afuera y reconoce su parte.</div><button class="usarbtn" type="button" data-u="4" aria-pressed="false">Usar en mi charla</button></div></details>
+      <details class="q" id="q5"><summary class="qh"><span class="num">6</span><b>¿Cómo creés que esto afectó al resto del equipo?</b><span class="mas" aria-hidden="true"></span></summary><div class="qb"><div>Hace visible el costo que otros absorben cuando una responsabilidad queda sin cumplir.</div><button class="usarbtn" type="button" data-u="5" aria-pressed="false">Usar en mi charla</button></div></details>
+      <div class="fase">Cerrar con un acuerdo</div>
+      <details class="q" id="q6"><summary class="qh"><span class="num">7</span><b>¿Qué vas a hacer para resolverlo y para cuándo?</b><span class="mas" aria-hidden="true"></span></summary><div class="qb"><div>Transforma la conversación en una acción concreta con una fecha definida.</div><button class="usarbtn" type="button" data-u="6" aria-pressed="false">Usar en mi charla</button></div></details>
+      <details class="q" id="q7"><summary class="qh"><span class="num">8</span><b>¿Qué vas a hacer diferente para que no vuelva a suceder?</b><span class="mas" aria-hidden="true"></span></summary><div class="qb"><div>Busca un cambio de conducta, no solamente una solución momentánea.</div><button class="usarbtn" type="button" data-u="7" aria-pressed="false">Usar en mi charla</button></div></details>
+      <details class="q" id="q8"><summary class="qh"><span class="num">9</span><b>¿Qué recurso concreto necesitás de mi parte, si necesitás alguno?</b><span class="mas" aria-hidden="true"></span></summary><div class="qb"><div>Ofrece apoyo sin quitarle a la persona la responsabilidad de resolver.</div><button class="usarbtn" type="button" data-u="8" aria-pressed="false">Usar en mi charla</button></div></details>
+      <details class="q" id="q9"><summary class="qh"><span class="num">10</span><b>¿Qué acuerdo y qué seguimiento vamos a establecer desde hoy?</b><span class="mas" aria-hidden="true"></span></summary><div class="qb"><div>Deja una definición que ambos puedan revisar. Sin seguimiento, el acuerdo queda solamente en palabras.</div><button class="usarbtn" type="button" data-u="9" aria-pressed="false">Usar en mi charla</button></div></details>
+    </div>
+    <div class="define">
+      <span class="kicker">La pregunta que define</span>
+      <h3>¿Puedo contar con vos para cumplir este acuerdo o tenemos que tomar otra decisión?</h3>
+      <p>La charla termina cuando queda claro qué va a pasar a partir de ahora.</p>
+    </div>
+    <div class="row" style="margin-top:18px">
+      <div class="lab">¿Cuándo vas a tener la charla?</div>
+      <input type="date" id="cFecha">
+    </div>
+  </div>
+</section>
+
+<section class="paso" id="datos">
+  <div class="wrap">
+    <div class="kicker">Paso 4 · Tus datos</div>
+    <h2>¿A quién le <em>preparo</em> la lectura?</h2>
+    <p class="intro">Con esto te devuelvo tu hoja para la conversación: lo que tenés que resolver antes, las preguntas que elegiste y la fecha de seguimiento.</p>
+    <form class="form" id="form" novalidate>
+      <div class="field" data-f="nombre"><label for="f_nombre">Nombre y apellido</label><input type="text" id="f_nombre" autocomplete="name" maxlength="80"><div class="msg">Escribí tu nombre y apellido.</div></div>
+      <div class="grid2">
+        <div class="field" data-f="whatsapp"><label for="f_whatsapp">WhatsApp</label><input type="tel" id="f_whatsapp" autocomplete="tel" inputmode="tel" placeholder="+54 9 11 1234 5678" maxlength="24"><div class="help">Con el código de tu país.</div><div class="msg">Revisá el número: con código de país, solo dígitos.</div></div>
+        <div class="field" data-f="email"><label for="f_email">Email <span class="opt">(opcional)</span></label><input type="email" id="f_email" autocomplete="email" maxlength="100"><div class="msg">Ese email no parece válido.</div></div>
+      </div>
+      <div class="grid2">
+        <div class="field" data-f="instagram"><label for="f_instagram">Usuario de Instagram <span class="opt">(opcional)</span></label><input type="text" id="f_instagram" placeholder="@tuusuario" maxlength="40" autocapitalize="off"></div>
+        <div class="field" data-f="pais"><label for="f_pais">País <span class="opt">(opcional)</span></label><input type="text" id="f_pais" autocomplete="country-name" maxlength="40"></div>
+      </div>
+      <div class="field" data-f="empresa"><label for="f_empresa">Empresa o proyecto <span class="opt">(opcional)</span></label><input type="text" id="f_empresa" autocomplete="organization" maxlength="80"></div>
+      <div class="grid2">
+        <div class="field" data-f="rol"><label for="f_rol">Tu rol hoy</label><select id="f_rol"><option value="">Elegí una opción</option></select><div class="msg">Elegí tu rol.</div></div>
+        <div class="field" data-f="equipo"><label for="f_equipo">¿Cuántas personas trabajan con vos?</label><select id="f_equipo"><option value="">Elegí una opción</option></select><div class="msg">Elegí una opción.</div></div>
+      </div>
+      <div class="field" data-f="cuando"><label for="f_cuando">Si encontraras el acompañamiento indicado, ¿cuándo te gustaría empezar?</label><select id="f_cuando"><option value="">Elegí una opción</option></select><div class="msg">Elegí una opción.</div></div>
+      <div class="field" data-f="inversion"><label for="f_inversion">¿Estás en condiciones de invertir en un proceso 1 a 1 si es lo que necesitás?</label><select id="f_inversion"><option value="">Elegí una opción</option></select><div class="msg">Elegí una opción.</div></div>
+      <label class="consent" id="consentWrap"><input type="checkbox" id="f_consent"> <span>Acepto que el equipo de Romina Carzoglio guarde mis respuestas y me escriba por WhatsApp para conversar sobre mis resultados.</span></label>
+      <button class="btn" type="submit" id="go">Conocer mis resultados</button>
+      <div class="formerr" id="formErr" aria-live="polite"></div>
+    </form>
+    <p class="privacy">Tus respuestas las leemos solo mi equipo y yo. No se comparten con nadie más.</p>
+  </div>
+</section>
+
+<section class="paso" id="resultados" hidden style="border-bottom:0">
+  <div class="wrap">
+    <div class="kicker">Tus resultados</div>
+    <h2 id="rTitle">Esto es lo que <em>mostraron tus respuestas.</em></h2>
+    <div class="verdict" id="verdict"></div>
+    <div id="toolResults"></div>
+    <div class="program">
+      <div class="kicker">Si querés ir más lejos</div>
+      <h3 style="margin-top:8px">Claridad Privada</h3>
+      <p>Si esto se repite en tu equipo, casi nunca es un problema de una persona. Es una forma de repartir el trabajo que se instaló sin que nadie la decidiera. En Claridad Privada la miramos con vos y la cambiamos, empezando por las conversaciones que venís esquivando.</p>
+      <ul>
+        <li><span>60</span>días, en tres fases: diagnóstico, liderazgo y delegación, y proyección.</li>
+        <li><span>4</span>sesiones individuales de 60 minutos conmigo, una cada dos semanas.</li>
+        <li><span>0–10</span>cuatro números (claridad, confianza, sobrecarga y equilibrio) medidos el primer día y el último.</li>
+        <li><span>10</span>personas como máximo por cohorte: cada lugar es tiempo directo conmigo.</li>
+      </ul>
+      
+    </div>
+    <div class="print"><button class="btn ghost" type="button" id="imprimir">Guardar o imprimir mi hoja</button></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="sig">Romina Carzoglio</div>
+    <div>Claridad Privada · rominacarzoglio.com</div>
+  </div>
+</footer>
+
+<script>
+var G = (function(){
+  var QUIEN = ["Yo","Alguien que siempre responde","Nadie, quedó sin hacer"];
+  var VECES = ["Fue la primera vez","Ya pasó antes","Pasa todo el tiempo"];
+  var CLARIDAD = [
+    ["¿La consigna fue realmente clara?","Si explicaste el resultado esperado o diste por hecho que era obvio.","Explicar el resultado esperado, no solo la tarea."],
+    ["¿Definiste responsable y fecha?","Una tarea sin dueño ni plazo es una intención, no un acuerdo.","Ponerle a la tarea un responsable con nombre y una fecha."],
+    ["¿Tenía lo necesario para cumplir?","Tiempo, información, herramientas y autoridad.","Revisar qué le faltó: tiempo, información, herramientas o autoridad."],
+    ["¿Sabés si es un error o un patrón?","No se corrige igual un error aislado que una conducta que se repite.","Decidir el tono según si es la primera vez o ya se repite."]
+  ];
+  var RESP = ["Sí","A medias","No"];
+  var FASES = [[0,"Entender el contexto"],[4,"Pedir responsabilidad"],[6,"Cerrar con un acuerdo"]];
+  var QS = [
+    ["¿Qué entendiste que tenías que hacer?","Te muestra si hubo un incumplimiento o una diferencia entre lo que vos dijiste y lo que la otra persona comprendió."],
+    ["¿Qué parte del acuerdo no se cumplió?","Lleva la conversación a hechos concretos y evita que se pierda en generalidades."],
+    ["¿Qué ocurrió concretamente?","Da lugar al contexto sin convertir la explicación en una excusa."],
+    ["¿Cuándo supiste que no ibas a cumplir y por qué no lo comunicaste?","Permite trabajar la anticipación. Muchas crisis no nacen del error, sino del silencio."],
+    ["¿Qué responsabilidad asumís en lo que pasó?","La persona deja de describir el problema desde afuera y reconoce su parte."],
+    ["¿Cómo creés que esto afectó al resto del equipo?","Hace visible el costo que otros absorben cuando una responsabilidad queda sin cumplir."],
+    ["¿Qué vas a hacer para resolverlo y para cuándo?","Transforma la conversación en una acción concreta con una fecha definida."],
+    ["¿Qué vas a hacer diferente para que no vuelva a suceder?","Busca un cambio de conducta, no solamente una solución momentánea."],
+    ["¿Qué recurso concreto necesitás de mi parte, si necesitás alguno?","Ofrece apoyo sin quitarle a la persona la responsabilidad de resolver."],
+    ["¿Qué acuerdo y qué seguimiento vamos a establecer desde hoy?","Deja una definición que ambos puedan revisar. Sin seguimiento, el acuerdo queda solamente en palabras."]
+  ];
+  var BASE = [0,3,6,9];
+
+  function init(){ return {t:"", q:"", a:"", v:"", cl:["","","",""], usar:[], fecha:""}; }
+  function nOk(t){ return t.cl.filter(function(x){ return x === RESP[0]; }).length; }
+  function pendientes(t){ return CLARIDAD.filter(function(_,i){ return t.cl[i] && t.cl[i] !== RESP[0]; }); }
+  function elegidas(t){ var u = (t.usar||[]).slice().sort(function(a,b){return a-b;}); return u.length ? u : BASE; }
+  function fdate(d){ if (!d) return ""; var p = d.split("-"); return p[2]+"/"+p[1]; }
+  function mas7(d){ if (!d) return ""; var x = new Date(d+"T12:00:00"); x.setDate(x.getDate()+7); return ("0"+x.getDate()).slice(-2)+"/"+("0"+(x.getMonth()+1)).slice(-2); }
+
+  function lectura(t){
+    if (!t.a) return "";
+    if (t.a === QUIEN[0]) return "Lo resolviste vos. Cada vez que pasa, tu equipo aprende que si algo se traba, la dueña o el dueño lo levanta.";
+    if (t.a === QUIEN[1]) return "Lo resolvió quien siempre responde. Ahí está el costo que no figura en ningún lado: quien cumple está pagando por quien no.";
+    return "Quedó sin hacer. Si nadie lo retoma, el mensaje para el equipo es que no cumplir no tiene consecuencias.";
+  }
+  function live(t){
+    var l = lectura(t);
+    U.$("live1").innerHTML = l ? '<div class="lbl">Lo que se ve</div><p>'+l+(t.v === VECES[2] ? ' Y como pasa todo el tiempo, ya no es un error: es una costumbre del equipo.' : t.v === VECES[1] ? ' Y ya pasó antes: prestá atención, puede ser un patrón.' : '')+'</p>' : '<p>Cuando elijas quién lo resolvió, acá vas a ver qué le está enseñando eso a tu equipo.</p>';
+    var resp = t.cl.filter(Boolean).length, ok = nOk(t);
+    U.$("cCount").textContent = !resp ? "0 de 4 revisados" : resp < 4 ? resp+" de 4 revisados" : ok === 4 ? "4 de 4: ya podés conversar." : (4-ok)+" de 4 para resolver antes de la charla. Te los dejo en tu hoja.";
+    CLARIDAD.forEach(function(_,i){ var r = U.$("cl"+i); if (r) r.classList.toggle("ok", t.cl[i] === RESP[0]); });
+    var n = (t.usar||[]).length;
+    U.$("qCount").textContent = n === 1 ? "1 elegida" : n+" elegidas";
+    U.$("qBar").style.width = Math.min(100, n/3*100)+"%";
+  }
+  function mount(t, update){
+    function marcar(name, v){ var g = document.querySelector('.seg[data-name="'+name+'"]'); if (g) g.querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", !!v && x.dataset.v === v); }); }
+    marcar("a", t.a); marcar("v", t.v); t.cl.forEach(function(v,i){ marcar("cl"+i, v); });
+    [["sT","t"],["sQ","q"],["cFecha","fecha"]].forEach(function(p){ var el = U.$(p[0]); el.value = t[p[1]]||""; el.addEventListener("input", function(){ t[p[1]] = el.value; update(); }); });
+    t.usar = t.usar || [];
+    t.usar.forEach(function(i){ var c = U.$("q"+i), u = c && c.querySelector(".usarbtn"); if (c) { c.classList.add("usar"); u.setAttribute("aria-pressed", "true"); u.textContent = "En tu hoja ✓"; } });
+    U.$("preguntas").addEventListener("click", function(e){
+      var u = e.target.closest(".usarbtn");
+      if (u) { var j = +u.dataset.u, p = t.usar.indexOf(j);
+        if (p >= 0) t.usar.splice(p,1); else t.usar.push(j);
+        var on = p < 0; u.setAttribute("aria-pressed", on); u.textContent = on ? "En tu hoja ✓" : "Usar en mi charla"; U.$("q"+j).classList.toggle("usar", on);
+        live(t); update(); }
+    });
+    live(t);
+  }
+  function onSeg(name, v, t){
+    if (name.indexOf("cl") === 0) t.cl[+name.slice(2)] = v; else t[name] = v;
+    live(t);
+  }
+  function senales(t){
+    var s = [];
+    if (t.a === QUIEN[0]) s.push("resuelve personalmente lo que su equipo no hace");
+    if (t.a === QUIEN[1]) s.push("quien cumple absorbe lo que otros no hacen");
+    if (t.v === VECES[2]) s.push("el incumplimiento es una costumbre");
+    if (pendientes(t).length >= 2) s.push(pendientes(t).length+" de 4 puntos de su propia claridad sin resolver");
+    return s;
+  }
+  function results(t){
+    var pend = pendientes(t), ok = nOk(t), resp = t.cl.filter(Boolean).length, el = elegidas(t), persona = t.q.trim();
+    var h = '<div class="block"><span class="kicker">Lo que pasó</span><div class="reading"><h3>'+(t.t.trim() ? U.esc(t.t.trim()) : "Tu caso")+'</h3><p>'+(lectura(t) || "No elegiste quién lo terminó resolviendo. Esa respuesta es la que más dice: completala y actualizá tus resultados.")+'</p></div></div>';
+    h += '<div class="block"><span class="kicker">Tu claridad</span><div class="reading"><h3>'+(resp ? ok+' de 4 en orden' : 'Sin revisar')+'</h3><p>'+
+      (!resp ? "Respondé los cuatro puntos antes de la charla: es lo que más cambia el tono de la conversación."
+       : ok === 4 ? "Llegás con tu parte en orden. Lo que se conversa es lo que no se cumplió, no lo que no se explicó."
+       : "Antes de pedir responsabilidad, resolvé esto. Si no, parte del incumplimiento es tuyo y la otra persona lo va a sentir.")+'</p>'+
+      (pend.length ? '<ul>'+pend.map(function(c){ return '<li>'+c[2]+'</li>'; }).join("")+'</ul>' : '')+'</div></div>';
+    h += '<div class="block"><span class="kicker">Tu hoja para la conversación</span><div class="sheet"><h3>Conversación con '+(persona ? U.esc(persona) : "____")+'</h3>'+
+      '<div class="line"><span>Sobre</span>'+(t.t.trim() ? U.esc(t.t.trim()) : "____")+'</div>'+
+      '<div class="line"><span>Cuándo</span>'+(t.fecha ? fdate(t.fecha)+' · seguimiento el '+mas7(t.fecha)+', diez minutos' : "____ · seguimiento una semana después")+'</div>'+
+      (pend.length ? '<div class="line"><span>Antes, a solas</span>'+pend.map(function(c){ return c[2]; }).join(" · ")+'</div>' : '')+
+      '<div class="line"><span>Preguntas'+((t.usar||[]).length ? " que elegiste" : " esenciales")+'</span><ol style="margin:6px 0 0 18px;display:grid;gap:4px">'+el.map(function(i){ return '<li>«'+QS[i][0]+'»</li>'; }).join("")+'</ol></div>'+
+      '<div class="line"><span>La pregunta que define</span>«¿Puedo contar con vos para cumplir este acuerdo o tenemos que tomar otra decisión?»</div></div></div>';
+    return h;
+  }
+  function resumen(t){
+    return "CASO: "+(t.t.trim()||"sin anotar")+" · no lo hizo: "+(t.q.trim()||"?")+" · lo resolvió: "+(t.a||"?")+" · frecuencia: "+(t.v||"?")+
+      "\nCLARIDAD PROPIA: "+nOk(t)+"/4 en orden\n"+CLARIDAD.map(function(c,i){ return "• "+c[0]+" "+(t.cl[i]||"sin responder"); }).join("\n")+
+      "\nPREGUNTAS ELEGIDAS: "+((t.usar||[]).length ? t.usar.slice().sort(function(a,b){return a-b;}).map(function(i){ return i+1; }).join(", ") : "ninguna (se le dieron las esenciales)")+
+      (t.fecha ? "\nCHARLA: "+fdate(t.fecha)+" · seguimiento: "+mas7(t.fecha) : "");
+  }
+  function problema(t){ var p = pendientes(t).length; return (t.a === QUIEN[0] ? "Termina resolviendo personalmente lo que su equipo no cumple" : t.a === QUIEN[1] ? "Quien cumple carga con lo que otros no hacen" : "En su equipo hay tareas que quedan sin hacer")+(t.v ? " ("+t.v.toLowerCase()+")" : "")+(p ? "; "+p+" de 4 puntos de su propia claridad sin resolver" : "")+"."; }
+  function objetivo(t){ return t.q.trim() ? "Tener la conversación con "+t.q.trim()+(t.t.trim() ? " sobre "+t.t.trim() : "")+" y cerrar un acuerdo con seguimiento" : "Ordenar cómo se reparte y se exige el trabajo en su equipo"; }
+  return {key:"equipo3", palabra:"equipo", nombre:"Equipo · Ordená la conversación antes de corregir", init:init, mount:mount, onSeg:onSeg, senales:senales, results:results, resumen:resumen, problema:problema, objetivo:objetivo};
+})();
+</script>
+<script>
+(function(){
+  /* ── Destino de los datos ─────────────────────────────────────────────
+     Mismo puente que la guía «claridad»: FormSubmit → correo. El asunto empieza con
+     «Nuevo diagnóstico» y el campo Origen dice «guia-reel», así la tarea
+     base-prospectos-guia-reels lo pasa a la base del artefacto. */
+  var MAIL = "ssaldanoc@gmail.com";
+  var ENDPOINT = "https://formsubmit.co/ajax/" + MAIL;
+  var KEY = "guia-" + G.key + "-v1";
+
+  var qs = new URLSearchParams(location.search);
+  var PALABRA = (qs.get("palabra") || qs.get("p") || G.palabra).toLowerCase().trim().slice(0,30);
+  var IG_URL = (qs.get("ig") || "").replace(/[^\w.@]/g,"").slice(0,40);
+  document.getElementById("hKicker").textContent = "Escribiste «" + PALABRA + "»";
+
+  var ROL = ["Dueño o dueña de una empresa o negocio","Directivo, gerente o líder con equipo a cargo","Profesional independiente","Trabajo en relación de dependencia sin equipo a cargo","Otro"];
+  var EQUIPO = ["Trabajo solo o sola","2 a 5 personas","6 a 20 personas","Más de 20 personas"];
+  var CUANDO = ["Ahora, este mes","En los próximos 2 o 3 meses","Más adelante","Solo estoy explorando"];
+  var INVERSION = ["Sí, si es lo que necesito","Tendría que evaluarlo","No por ahora"];
+
+  /* ── utilidades que usan las guías ── */
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function fmt(n, d){ var k = Math.pow(10, d == null ? 1 : d); return (Math.round(n*k)/k).toString().replace(".",","); }
+  function money(n){ var s = Math.round(Math.abs(n)).toString().replace(/\B(?=(\d{3})+(?!\d))/g,"."); return (n < 0 ? "−" : "") + s; }
+  function fill(r){ r.style.setProperty("--p", (r.value - r.min) / (r.max - r.min) * 100 + "%"); }
+  function seg(name, list, cur){
+    return '<div class="seg" data-name="'+name+'">'+list.map(function(v){ return '<button type="button" data-v="'+esc(v)+'"'+(v===cur?' class="on"':'')+'>'+esc(v)+'</button>'; }).join("")+'</div>';
+  }
+  function bar(label, value, max, right, low){
+    return '<div class="bar'+(low?" low":"")+'"><div class="bl"><b>'+label+'</b><span>'+right+'</span></div><div class="track"><div class="fill" style="width:'+Math.max(0,Math.min(100,value/max*100))+'%"></div></div></div>';
+  }
+  function first(s){ return (String(s||"").trim().split(/\s+/)[0]) || ""; }
+  window.U = {$:$, esc:esc, fmt:fmt, money:money, fill:fill, seg:seg, bar:bar, first:first};
+
+  /* ── estado ── */
+  function blank(){ return {t:G.init(), c:{nombre:"",whatsapp:"",email:"",instagram:IG_URL,pais:"",empresa:"",rol:"",equipo:"",cuando:"",inversion:"",consent:false}, sent:0, pending:null}; }
+  var st = blank();
+  try { var raw = localStorage.getItem(KEY); if (raw) { var o = JSON.parse(raw); if (o && o.t && o.c) { st.t = Object.assign(st.t, o.t); st.c = Object.assign(st.c, o.c); st.sent = o.sent||0; st.pending = o.pending||null; if (IG_URL && !st.c.instagram) st.c.instagram = IG_URL; } } } catch(e) {}
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e) {} }
+  function update(){ save(); if (!$("resultados").hidden) renderResults(); }
+
+  /* ── formulario ── */
+  function opts(sel, list){ list.forEach(function(v){ var o=document.createElement("option"); o.textContent=v; sel.appendChild(o); }); }
+  opts($("f_rol"),ROL); opts($("f_equipo"),EQUIPO); opts($("f_cuando"),CUANDO); opts($("f_inversion"),INVERSION);
+  ["nombre","whatsapp","email","instagram","pais","empresa","rol","equipo","cuando","inversion"].forEach(function(k){ $("f_"+k).value = st.c[k] || ""; });
+  $("f_consent").checked = !!st.c.consent;
+
+  /* Nivel de preparación, igual que en la guía «claridad»:
+     listo = perfil + quiere empezar pronto + «sí» a invertir + al menos dos señales de la herramienta. */
+  function nivel(){
+    var c = st.c, motivos = [];
+    var perfil = c.rol === ROL[0] || c.rol === ROL[1] || (c.rol === ROL[2] && c.equipo && c.equipo !== EQUIPO[0]);
+    motivos.push((perfil?"✔ ":"✘ ")+"Perfil: "+(c.rol||"sin dato")+" · equipo: "+(c.equipo||"sin dato"));
+    var urg = c.cuando === CUANDO[0] ? 2 : c.cuando === CUANDO[1] ? 1 : 0;
+    motivos.push((urg?"✔ ":"✘ ")+"Quiere empezar: "+(c.cuando||"sin dato"));
+    var inv = c.inversion === INVERSION[0] ? 2 : c.inversion === INVERSION[1] ? 1 : 0;
+    motivos.push((inv===2?"✔ ":inv===1?"~ ":"✘ ")+"Inversión: "+(c.inversion||"sin dato"));
+    var dolor = G.senales(st.t);
+    motivos.push((dolor.length>=2?"✔ ":dolor.length?"~ ":"✘ ")+"Señales de la guía ("+dolor.length+"): "+(dolor.join("; ")||"ninguna fuerte"));
+    var k;
+    if (perfil && urg >= 1 && inv === 2 && dolor.length >= 2) k = "listo";
+    else if (perfil && (urg >= 1 || inv >= 1) && dolor.length >= 1) k = "tibio";
+    else k = "no";
+    return {k:k, motivos:motivos, etiqueta:{listo:"LISTO PARA INGRESAR",tibio:"TIBIO, NUTRIR",no:"TODAVÍA NO"}[k]};
+  }
+
+  var VERDICT = {
+    listo:["Es un buen momento para trabajarlo","Tus respuestas muestran tres cosas a la vez: esto te está costando de verdad, querés moverte pronto y estás en condiciones de hacerlo. Mi equipo ya tiene tus respuestas y te va a escribir por WhatsApp para coordinar una primera conversación."],
+    tibio:["Hay señales claras, y vale la pena mirarlas","Lo que respondiste muestra un costo real, aunque quizás no sea el momento exacto para empezar. Mi equipo ya tiene tus respuestas. Si querés conversar antes, respondé el mensaje por donde te llegó esta guía."],
+    no:["Quizás todavía no sea el momento de un proceso 1 a 1","Y está bien. Guardá lo que armaste acá y volvé a mirarlo dentro de un mes. Si algo se movió, perfecto. Si sigue igual, ya sabés por dónde empezar."]
+  };
+
+  function renderResults(){
+    var nv = nivel(), nombre = first(st.c.nombre);
+    $("rTitle").innerHTML = (nombre ? esc(nombre)+", esto" : "Esto")+" es lo que <em>mostraron tus respuestas.</em>";
+    var V = (G.verdict && G.verdict[nv.k]) || VERDICT[nv.k];
+    $("verdict").innerHTML = '<h3>'+V[0]+'</h3><p>'+V[1]+'</p>';
+    $("toolResults").innerHTML = G.results(st.t, nombre);
+    if (G.afterResults) G.afterResults(st.t);
+  }
+
+  function payload(){
+    var c = st.c, nv = nivel(), t = st.t, nombre = c.nombre.trim();
+    return {
+      "_subject": "Nuevo diagnóstico · "+nv.etiqueta+" · "+nombre+" · guía «"+PALABRA+"»"+(st.sent?" (actualización)":""),
+      "_template": "table",
+      "_captcha": "false",
+      "Nivel": nv.etiqueta,
+      "Motivos del nivel": nv.motivos.join("\n"),
+      "Nombre y apellido": nombre,
+      "WhatsApp": c.whatsapp.trim(),
+      "Email": c.email.trim() || "—",
+      "Instagram": c.instagram.trim() || "—",
+      "País": c.pais.trim() || "—",
+      "Empresa o proyecto": c.empresa.trim() || "—",
+      "Rol actual": c.rol,
+      "Tamaño del equipo": c.equipo,
+      "Cuándo quiere empezar": c.cuando,
+      "Inversión en un proceso 1 a 1": c.inversion,
+      "Mayor problema, dificultad o preocupación": G.problema(t) || "—",
+      "Objetivo con Claridad Privada": G.objetivo(t) || "—",
+      "Guía": G.nombre,
+      "Lo que trabajó en la guía": G.resumen(t) || "—",
+      "Palabra comentada": PALABRA,
+      "Origen": "guia-reel",
+      "Enviado desde": location.href.split("#")[0]
+    };
+  }
+  function send(data){
+    return fetch(ENDPOINT, {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body:JSON.stringify(data)})
+      .then(function(r){ return r.json().catch(function(){ return {}; }); })
+      .then(function(j){ if (String(j.success) !== "true") throw new Error(j.message || "envío rechazado"); return j; });
+  }
+
+  function validate(){
+    var ok = true, c = st.c;
+    function mark(k, bad){ document.querySelector('.field[data-f="'+k+'"]').classList.toggle("bad", bad); if (bad) ok = false; }
+    mark("nombre", c.nombre.trim().split(/\s+/).length < 2 || c.nombre.trim().length < 4);
+    mark("whatsapp", !/^\+?[\d\s\-().]{8,20}$/.test(c.whatsapp.trim()) || c.whatsapp.replace(/\D/g,"").length < 8);
+    mark("email", !!c.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(c.email.trim()));
+    mark("rol", !c.rol); mark("equipo", !c.equipo); mark("cuando", !c.cuando); mark("inversion", !c.inversion);
+    $("consentWrap").classList.toggle("bad", !c.consent); if (!c.consent) ok = false;
+    return ok;
+  }
+  function reveal(){ document.body.classList.add("res"); $("resultados").hidden = false; $("navRes").classList.remove("locked"); renderResults(); }
+
+  ["nombre","whatsapp","email","instagram","pais","empresa"].forEach(function(k){ $("f_"+k).addEventListener("input", function(e){ st.c[k] = e.target.value; save(); }); });
+  ["rol","equipo","cuando","inversion"].forEach(function(k){ $("f_"+k).addEventListener("change", function(e){ st.c[k] = e.target.value; save(); }); });
+  $("f_consent").addEventListener("change", function(e){ st.c.consent = e.target.checked; save(); });
+
+  $("form").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    $("formErr").textContent = "";
+    if (!validate()) { $("formErr").textContent = "Revisá los campos marcados."; var b = document.querySelector(".field.bad, .consent.bad"); if (b) b.scrollIntoView({behavior:"smooth",block:"center"}); return; }
+    var data = payload(), btn = $("go");
+    btn.disabled = true; btn.textContent = "Preparando tus resultados…";
+    send(data).then(function(){ st.sent = Date.now(); st.pending = null; save(); })
+    .catch(function(){ st.pending = data; save(); }) /* la persona igual ve sus resultados; el envío se reintenta al volver */
+    .then(function(){ btn.disabled = false; btn.textContent = "Actualizar mis resultados"; reveal(); $("resultados").scrollIntoView({behavior:"smooth"}); });
+  });
+  if (st.pending) send(st.pending).then(function(){ st.sent = Date.now(); st.pending = null; save(); }).catch(function(){});
+
+  /* botones de opción y desplegables, para todas las guías */
+  document.addEventListener("click", function(e){
+    var b = e.target.closest(".seg button");
+    if (b) { /* tocar la opción ya elegida la desmarca */
+      var s = b.parentNode, off = b.classList.contains("on");
+      s.querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", !off && x===b); });
+      if (G.onSeg) G.onSeg(s.dataset.name, off ? "" : b.dataset.v, st.t); update(); return; }
+    var o = e.target.closest(".open");
+    if (o) { var on = o.getAttribute("aria-expanded") !== "true"; o.setAttribute("aria-expanded", on); var nx = o.nextElementSibling; if (nx) nx.classList.toggle("on", on); return; }
+    if (e.target.closest("#imprimir")) window.print();
+  });
+
+  var links = document.querySelectorAll(".steps a");
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) links.forEach(function(l){ l.classList.toggle("on", l.dataset.s === e.target.id); }); });
+    }, {rootMargin:"-45% 0px -50% 0px"});
+    document.querySelectorAll("section.paso").forEach(function(s){ io.observe(s); });
+  }
+
+  G.mount(st.t, update);
+  if (st.sent || st.pending) { reveal(); $("go").textContent = "Actualizar mis resultados"; }
+})();
+</script>
+</body>
+</html>
