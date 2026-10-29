@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía Soltar</title>
+<meta name="description" content="Lo que estás cargando de más, qué lo sostiene, cuánto te cuesta y cómo soltar lo primero sin que salga mal. Con el método de Claridad Privada. Romina Carzoglio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Claridad Privada: arena clara y la tipografía del logo. Misma base que la guía «claridad». */
+:root{
+  --bg:#FBF8F3; --bg2:#F2EADF; --card:#FFFFFF;
+  --ink:#2F2A26; --ink2:rgba(47,42,38,.74); --ink3:rgba(47,42,38,.54);
+  --terra:#BCA78F; --terra-deep:#7A6654; --rosa:#D9C9B5; --rosa-soft:#EAE0D2;
+  --line:rgba(122,102,84,.22); --line-soft:rgba(122,102,84,.12);
+  --good:#5F7550; --warn:#A8662F; --err:#A4473A;
+  --serif:"Cormorant Garamond","Playfair Display",Georgia,serif; --sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --ease:cubic-bezier(.32,.72,0,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;font-weight:400}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+em{font-family:var(--serif);font-style:italic;font-weight:400}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15;letter-spacing:-.01em}
+h1{font-size:clamp(42px,10.5vw,66px)}
+h2{font-size:clamp(31px,7.6vw,42px);margin-bottom:12px}
+h3{font-size:25px;margin-bottom:6px}
+p{color:var(--ink2)}
+p+p{margin-top:10px}
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-deep);font-weight:600}
+
+.brand{display:flex;justify-content:center;padding:22px 0 6px}
+.brand img{width:min(190px,52vw);height:auto;mix-blend-mode:multiply}
+.hero{padding:18px 0 40px;border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;gap:28px;align-items:center}
+.hero .photo{border-radius:22px;overflow:hidden;background:var(--bg2);aspect-ratio:4/5;max-width:100%;max-height:540px}
+.hero .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block}
+.hero .text{min-width:0}
+@media (min-width:860px){.hero .wrap{max-width:1040px;grid-template-columns:400px minmax(0,1fr);gap:48px}}
+.hero .kicker{margin-bottom:22px}
+.hero h1 em{color:var(--terra-deep)}
+.hero .lead{font-size:19px;margin-top:20px}
+.quote{margin-top:28px;padding:18px 20px;border-left:2px solid var(--terra);background:var(--bg2);border-radius:0 12px 12px 0}
+.quote p{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink)}
+.quote small{display:block;margin-top:8px;font-size:13px;color:var(--ink3)}
+.meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:26px;font-size:14px;color:var(--ink3)}
+.meta span+span::before{content:"·";margin-right:8px;color:var(--terra)}
+
+.steps{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft)}
+.steps .wrap{display:flex;gap:6px;padding-top:10px;padding-bottom:10px}
+.steps a{flex:1;min-width:0;text-decoration:none;font-size:12px;color:var(--ink3);text-align:center;padding:6px 2px;border-radius:999px;transition:all .3s var(--ease);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.steps a b{display:block;font-family:var(--serif);font-weight:500;font-size:16px;color:var(--ink2)}
+.steps a.on{background:var(--bg2);color:var(--terra-deep)}
+.steps a.on b{color:var(--terra-deep)}
+.steps a.locked{opacity:.45;pointer-events:none}
+
+section.paso{padding:52px 0;border-bottom:1px solid var(--line)}
+.paso .kicker{margin-bottom:12px}
+.paso p.intro{margin-bottom:26px}
+.sub{font-family:var(--serif);font-size:23px;color:var(--ink);margin:30px 0 10px}
+
+/* tarjetas y controles */
+.row{background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:16px 18px;margin-bottom:10px}
+.row .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.row label,.row .lab{font-size:15.5px;color:var(--ink);line-height:1.4}
+.row .val{font-family:var(--serif);font-size:24px;color:var(--terra-deep);min-width:56px;text-align:right;white-space:nowrap}
+.row .val small{font-family:var(--sans);font-size:12px;color:var(--ink3);margin-left:2px}
+.row .hint{font-size:13.5px;color:var(--ink3);margin-top:2px}
+.row.on{border-color:var(--terra-deep);box-shadow:0 0 0 1px var(--terra-deep)}
+.row .n{font-family:var(--serif);font-style:italic;color:var(--terra-deep);font-size:15px;margin-bottom:6px}
+input[type=range]{width:100%;margin-top:12px;-webkit-appearance:none;appearance:none;height:28px;background:transparent}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(to right,var(--terra) var(--p,0%),var(--line) var(--p,0%))}
+input[type=range]::-moz-range-track{height:4px;border-radius:4px;background:var(--line)}
+input[type=range]::-moz-range-progress{height:4px;border-radius:4px;background:var(--terra)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--card);border:2px solid var(--terra-deep);margin-top:-10px;box-shadow:0 2px 6px rgba(47,42,38,.15)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--card);border:2px solid var(--terra-deep)}
+.ends{display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-top:-2px}
+
+input[type=text],input[type=tel],input[type=email],input[type=number],input[type=date],select,textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px;outline:none;transition:border .2s}
+textarea{resize:vertical;min-height:84px;line-height:1.5}
+input:focus,select:focus,textarea:focus{border-color:var(--terra-deep)}
+.row input[type=text],.row select,.row textarea,.row input[type=number],.row input[type=date]{margin-top:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:440px){.two{grid-template-columns:1fr}}
+
+/* botones de opción */
+.seg{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.seg button,.chip{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--bg);color:var(--ink2);padding:8px 13px;border-radius:999px;cursor:pointer;transition:all .2s var(--ease);line-height:1.3;text-align:left}
+.seg button:hover,.chip:hover{border-color:var(--terra)}
+.seg button.on,.chip.on{background:var(--terra-deep);border-color:var(--terra-deep);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chk{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:14px 16px;margin-bottom:8px;cursor:pointer;font-size:15.5px;color:var(--ink);line-height:1.45;transition:border .2s}
+.chk input{accent-color:var(--terra-deep);width:20px;height:20px;flex:none;margin-top:1px}
+.chk.on{border-color:var(--terra-deep)}
+.chk small{display:block;color:var(--ink3);font-size:13.5px;margin-top:2px}
+
+/* lectura en vivo */
+.live{margin-top:18px;background:var(--bg2);border:1px solid var(--line-soft);border-radius:16px;padding:18px 20px}
+.live .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.live .big{font-family:var(--serif);font-size:clamp(40px,11vw,58px);line-height:1;color:var(--terra-deep)}
+.live .big small{font-family:var(--sans);font-size:15px;color:var(--ink3);margin-left:6px}
+.live p{font-size:15.5px;margin-top:8px}
+.live .split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.live .split .big{font-size:34px}
+
+/* contenido de valor */
+.qs{list-style:none;counter-reset:q;display:grid;gap:12px;margin-top:6px}
+.qs li{counter-increment:q;position:relative;padding:14px 16px 14px 52px;background:var(--card);border:1px solid var(--line-soft);border-radius:14px;color:var(--ink);font-size:16px}
+.qs li::before{content:counter(q);position:absolute;left:18px;top:11px;font-family:var(--serif);font-style:italic;font-size:24px;color:var(--terra-deep)}
+.qs li small{display:block;color:var(--ink3);font-size:13.5px;margin-top:4px}
+.moment{margin-top:26px}
+.moment>.kicker{display:block;margin-bottom:6px}
+.moment>p{font-size:15.5px;margin-bottom:12px}
+.note{font-size:14.5px;color:var(--ink3);margin-top:12px}
+.card{background:var(--card);border:1px solid var(--line-soft);border-radius:16px;padding:18px 20px;margin-bottom:10px}
+.card h3{font-size:22px}
+.card p{font-size:15.5px}
+.open{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;font:inherit;font-size:16px;color:var(--ink);background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:15px 18px;cursor:pointer;text-align:left;margin-bottom:8px}
+.open::after{content:"+";font-family:var(--serif);font-size:26px;line-height:1;color:var(--terra-deep);transition:transform .3s var(--ease)}
+.open[aria-expanded=true]{border-color:var(--terra);border-bottom-left-radius:0;border-bottom-right-radius:0;margin-bottom:0}
+.open[aria-expanded=true]::after{transform:rotate(45deg)}
+.opened{display:none;background:var(--bg2);border:1px solid var(--terra);border-top:0;border-radius:0 0 14px 14px;padding:16px 18px;margin-bottom:8px}
+.opened.on{display:block;animation:in .4s var(--ease)}
+.opened p{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--ink);line-height:1.4}
+.opened small{display:block;margin-top:8px;font-size:14px;color:var(--ink2);font-family:var(--sans)}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+@media (max-width:560px){.cols3{grid-template-columns:1fr}}
+.col{background:var(--card);border:1px solid var(--line-soft);border-radius:14px;padding:14px}
+.col h4{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--terra-deep)}
+.col .h{font-size:13px;color:var(--ink3);margin-bottom:8px}
+.col ul{list-style:none;display:grid;gap:6px;font-size:14px;color:var(--ink2)}
+
+/* formulario */
+.form{display:grid;gap:14px}
+.field label{display:block;font-size:14.5px;font-weight:500;color:var(--ink);margin-bottom:6px}
+.field label .opt{font-weight:400;color:var(--ink3)}
+.field .help{font-size:13px;color:var(--ink3);margin-top:4px}
+.field.bad input,.field.bad select{border-color:var(--err)}
+.field .msg{font-size:13px;color:var(--err);margin-top:4px;display:none}
+.field.bad .msg{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:480px){.grid2{grid-template-columns:1fr}}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink2);cursor:pointer}
+.consent input{accent-color:var(--terra-deep);width:20px;height:20px;flex:none;margin-top:2px}
+.consent.bad{color:var(--err)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-size:17px;font-weight:600;border:0;border-radius:999px;padding:16px 24px;cursor:pointer;background:var(--terra-deep);color:#FFFFFF;transition:transform .2s var(--ease),opacity .2s;width:100%;margin-top:8px}
+.btn:active{transform:scale(.98)}
+.btn[disabled]{opacity:.6;cursor:wait}
+.btn.ghost{background:transparent;color:var(--terra-deep);border:1px solid var(--terra-deep)}
+.formerr{font-size:14px;color:var(--err);text-align:center;min-height:20px}
+.privacy{font-size:13px;color:var(--ink3);margin-top:10px;text-align:center}
+
+/* resultados */
+#resultados[hidden]{display:none}
+.verdict{border-radius:18px;padding:24px 22px;background:var(--bg2);border:1px solid var(--line-soft);margin-bottom:26px}
+.verdict h3{font-size:24px;color:var(--terra-deep);margin-bottom:8px}
+.block{margin-top:40px}
+.block > .kicker{display:block;margin-bottom:10px}
+.result{margin-top:12px;background:var(--bg2);color:var(--ink);border:1px solid var(--line-soft);border-radius:18px;padding:24px 22px}
+.result .big{font-family:var(--serif);font-size:clamp(46px,12.5vw,68px);line-height:1;color:var(--terra-deep)}
+.result .big small{font-family:var(--sans);font-size:15px;opacity:.7;margin-left:6px}
+.result .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.65;margin-bottom:8px}
+.result .split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.result .split .big{font-size:36px}
+.result .note{color:var(--ink2);font-size:15px}
+.bars{margin-top:16px;display:grid;gap:14px}
+.bar .bl{display:flex;justify-content:space-between;gap:10px;font-size:14px;margin-bottom:6px}
+.bar .bl b{font-weight:600}
+.bar .track{height:10px;border-radius:10px;background:var(--line-soft);overflow:hidden}
+.bar .fill{height:100%;border-radius:10px;background:var(--terra);transition:width .5s var(--ease)}
+.bar.low .fill{background:var(--warn)}
+.reading{margin-top:18px;padding:20px;border-radius:14px;background:var(--bg2);border:1px solid var(--line-soft)}
+.reading h3{color:var(--terra-deep)}
+.reading ul,.sheet ul{margin:10px 0 0 18px;display:grid;gap:6px;color:var(--ink2);font-size:15.5px}
+.sheet{margin-top:14px;background:var(--card);border:1px dashed var(--terra);border-radius:16px;padding:22px}
+.sheet h3{font-size:24px}
+.sheet .line{padding:10px 0;border-bottom:1px solid var(--line-soft);font-size:15.5px;color:var(--ink)}
+.sheet .line:last-child{border-bottom:0}
+.sheet .line span{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:2px}
+.sheet .letter{font-family:var(--serif);font-size:21px;line-height:1.5;color:var(--ink)}
+.sheet .letter p{color:var(--ink)}
+.program{margin-top:40px;padding:24px 22px;border-radius:18px;background:var(--bg2)}
+.program > p{margin-top:6px}
+.program ul{list-style:none;margin-top:14px;display:grid;gap:10px}
+.program li{display:flex;gap:12px;font-size:15.5px;color:var(--ink2)}
+.program li span{font-family:var(--serif);font-style:italic;color:var(--terra-deep);min-width:34px}
+.program .enc{margin-top:18px;display:grid;gap:10px}
+.program .enc div{background:var(--card);border-radius:12px;padding:12px 14px;font-size:15px;color:var(--ink2)}
+.program .enc b{display:block;font-family:var(--serif);font-weight:500;font-size:19px;color:var(--ink)}
+.print{margin-top:26px}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+footer{padding:40px 0 56px;text-align:center;font-size:13px;color:var(--ink3)}
+footer .sig{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ink);margin-bottom:6px}
+
+@media print{
+  body{font-size:14px;background:#fff}
+  body.res .hero,body.res .steps,body.res section.paso:not(#resultados),.print,.program,.verdict{display:none!important}
+  .brand{padding-top:0}
+  #resultados{padding-top:0}
+  .block{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="brand"><img src="../logo.jpg" alt="Claridad Privada, Romina Carzoglio" width="640" height="416"></div>
+<header class="hero">
+  <div class="wrap">
+    <div class="text">
+    <div class="kicker" id="hKicker"></div>
+    <h1>¿Sentís que si no lo hacés vos, <em>no sale bien?</em></h1>
+    <p class="lead">Revisás todo, resolvés todo, estás en todos los detalles. Y aunque las cosas funcionan, cada vez te queda menos tiempo y menos energía para lo que de verdad importa. Esta guía es una versión corta de cómo trabajo en Claridad Privada: primero miramos lo que cargás, después qué lo sostiene y qué te cuesta, y recién ahí decidimos qué soltar.</p>
+    <div class="quote">
+      <p>«Una empresa no llega a veinte sucursales si una sola persona sostiene cada decisión. Tuve que aprender a soltar, a confiar y a elegir dónde poner mi energía.»</p>
+      <small>Romina Carzoglio, en el video que te trajo hasta acá</small>
+    </div>
+    <div class="meta"><span>7 minutos</span><span>3 pasos</span><span>Tu mapa y la propuesta al final</span></div>
+    </div>
+  </div>
+</header>
+<nav class="steps" aria-label="Pasos">
+  <div class="wrap">
+    <a href="#p1" data-s="p1"><b>1</b>Tu carga</a>
+    <a href="#p2" data-s="p2"><b>2</b>Por qué</a>
+    <a href="#p3" data-s="p3"><b>3</b>La primera</a>
+    <a href="#datos" data-s="datos"><b>4</b>Tus datos</a>
+    <a href="#resultados" data-s="resultados" class="locked" id="navRes"><b>5</b>Resultados</a>
+  </div>
+</nav>
+
+<main>
+<style>
+/* Paleta fusionada: blanco, gris y arena. */
+:root{
+  --bg:#FFFFFF; --bg2:#F3EEE6; --card:#FFFFFF;
+  --ink:#3D4044; --ink2:rgba(61,64,68,.78); --ink3:rgba(61,64,68,.58);
+  --terra:#D6C7AF; --terra-deep:#5E6267; --rosa:#E5DACA; --rosa-soft:#F6F2EC;
+  --line:rgba(94,98,103,.2); --line-soft:rgba(94,98,103,.11);
+  --arena:#A88F68; --arena-dk:#8C7553; --gris:#F4F4F3;
+}
+.hero .wrap{grid-template-columns:1fr!important;max-width:680px!important}
+.hero h1 em,h2 em{color:var(--arena)}
+.quote{background:var(--bg2);border-left-color:var(--terra)}
+@media (max-width:480px){.steps .wrap{gap:2px;padding-left:10px;padding-right:10px}.steps a{font-size:11px;padding:6px 0;overflow:visible;text-overflow:clip}.steps a b{font-size:15px}}
+
+/* Controles nativos con forma de píldora: funcionan aunque el visor no ejecute código */
+.vh{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.pill{display:inline-flex;align-items:center;gap:6px;min-height:40px;white-space:nowrap;font:500 14px/1.25 var(--sans);color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 13px;cursor:pointer;transition:background .15s,border-color .15s,color .15s;-webkit-tap-highlight-color:transparent;user-select:none}
+.pill:has(input:checked){background:var(--terra-deep);border-color:var(--terra-deep);color:#fff}
+.pill:has(input:focus-visible){outline:2px solid var(--arena);outline-offset:2px}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+
+/* Paso 1: lista de tareas */
+.tarea{background:var(--gris);border:1px solid var(--line-soft);border-radius:16px;padding:12px 12px 10px;margin-bottom:8px;transition:background .15s,border-color .15s}
+.tarea .nom{font-weight:600;font-size:15px;color:var(--ink);margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}
+.tarea .nom small{font-weight:500;font-size:12px;color:var(--ink3);white-space:nowrap}
+.tarea .pill{padding:6px 10px;font-size:13px}
+.tarea .pills{flex-wrap:nowrap;gap:5px}
+@media (max-width:400px){.tarea .pill{padding:6px 8px;font-size:12.5px}.tarea .pills{gap:4px}}
+@media (max-width:330px){.tarea .pills{flex-wrap:wrap}}
+.tarea:has(input[value="1"]:checked){background:#fff;border-color:var(--terra-deep)}
+.tarea:has(input[value="2"]:checked){background:var(--bg2);border-color:var(--arena)}
+.tarea:has(input[value="2"]:checked) .pill:has(input:checked){background:var(--arena);border-color:var(--arena)}
+.tarea:has(input[value="3"]:checked) .nom span{text-decoration:line-through;color:var(--ink3)}
+.balanza{margin-top:14px;background:var(--bg2);border-radius:16px;padding:16px 18px}
+.balanza .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.balanza .barra{display:flex;height:12px;border-radius:6px;overflow:hidden;background:#fff;margin:10px 0}
+.balanza .barra i{display:block;height:100%;transition:width .3s}
+.b1{background:var(--terra-deep)}.b2{background:var(--arena)}.b3{background:var(--terra)}
+.cifras{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:12.5px;color:var(--ink2)}
+.cifras b{display:block;font-family:var(--serif);font-size:30px;font-weight:500;color:var(--ink);line-height:1}
+.balanza p{font-size:15px;margin-top:10px;color:var(--ink)}
+.rango{background:#fff;border:1px solid var(--line-soft);border-radius:16px;padding:14px 16px;margin-top:10px}
+.rango .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.rango label{font-size:15px;color:var(--ink)}
+.rango output{font-family:var(--serif);font-size:26px;color:var(--arena);white-space:nowrap}
+.rango .ends{display:flex;justify-content:space-between;font-size:12px;color:var(--ink3)}
+
+/* Paso 2: lo que lo sostiene */
+.motivo{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px 14px 48px;margin-bottom:8px;position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.motivo::before{content:"";position:absolute;left:16px;top:15px;width:20px;height:20px;border-radius:6px;border:1.5px solid var(--ink3);background:#fff}
+.motivo:has(input:checked){border-color:var(--arena);background:var(--rosa-soft)}
+.motivo:has(input:checked)::before{background:var(--arena);border-color:var(--arena);box-shadow:inset 0 0 0 3px #fff}
+.motivo:has(input:focus-visible){outline:2px solid var(--arena);outline-offset:2px}
+.motivo b{display:block;font-weight:600;font-size:15.5px;color:var(--ink)}
+.motivo .lect{display:none;margin-top:8px;font-size:14.5px;color:var(--ink2);border-top:1px dashed var(--terra);padding-top:8px}
+.motivo .lect i{font-family:var(--serif);font-size:16px;color:var(--arena-dk)}
+.motivo:has(input:checked) .lect{display:block}
+.costos{display:flex;flex-wrap:wrap;gap:6px}
+.subt{font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--arena-dk);margin:22px 0 10px}
+
+/* Paso 3 */
+.pasos5{counter-reset:p;display:grid;gap:8px;margin:6px 0 0;padding:0}
+.pasos5 li{list-style:none;counter-increment:p;position:relative;background:var(--gris);border-radius:14px;padding:12px 14px 12px 50px;font-size:15px}
+.pasos5 li::before{content:counter(p);position:absolute;left:14px;top:12px;width:26px;height:26px;border-radius:50%;border:1px solid var(--terra);display:grid;place-items:center;font-size:12.5px;font-weight:700;color:var(--arena-dk);background:#fff}
+.pasos5 li b{display:block;font-weight:600;color:var(--ink)}
+.pasos5 li span{color:var(--ink2);font-size:14.5px}
+.campo{background:#fff;border:1px solid var(--line-soft);border-radius:16px;padding:14px 16px;margin-bottom:10px}
+.campo .lab{font-size:15px;color:var(--ink);margin-bottom:8px}
+.campo select,.campo input[type=text]{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+.horas-hoy{font-family:var(--serif);font-size:44px;line-height:1;color:var(--arena)}
+.mapa{display:grid;gap:8px}
+.mapa div{background:#fff;border:1px solid var(--line-soft);border-radius:14px;padding:12px 14px;font-size:15px;color:var(--ink)}
+.mapa div span{display:block;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--arena-dk);margin-bottom:3px}
+</style>
+
+<section class="paso" id="p1">
+  <div class="wrap">
+    <div class="kicker">Paso 1 · Lo que cargás</div>
+    <h2>Todo lo que <em>pasa por vos.</em></h2>
+    <p class="intro">En el primer encuentro de Claridad Privada lo primero que hacemos es separar lo que se ve de lo que creemos. Empezá por lo que se ve: en cada tarea que hacés, revisás o aprobás vos, marcá si es solo tuya, si podría hacerla otra persona o si ya no hace falta. Lo que no te toca, dejalo sin marcar.</p>
+    <div id="tareas">
+      <div class="tarea"><div class="nom"><span>Responder consultas de clientes</span></div><div class="pills"><label class="pill"><input class="vh" type="radio" name="t0" value="1">Solo yo</label><label class="pill"><input class="vh" type="radio" name="t0" value="2">Otra persona</label><label class="pill"><input class="vh" type="radio" name="t0" value="3">Ya no hace falta</label></div></div>
+      <div class="tarea"><div class="nom"><span>Aprobar pagos y gastos</span></div><div class="pills"><label class="pill"><input class="vh" type="radio" name="t1" value="1">Solo yo</label><label class="pill"><input class="vh" type="radio" name="t1" value="2">Otra persona</label><label class="pill"><input class="vh" type="radio" name="t1" value="3">Ya no hace falta</label></div></div>
+      <div class="tarea"><div class="nom"><span>Revisar el trabajo del equipo</span></div><div class="pills"><label class="pill"><input class="vh" type="radio" name="t2" value="1">Solo yo</label><label class="pill"><input class="vh" type="radio" name="t2" value="2">Otra persona</label><label class="pill"><input class="vh" type="radio" name="t2" value="3">Ya no hace falta</label></div></div>
+      <div class="tarea"><div class="nom"><span>Resolver reclamos</span></div><div class="pills"><label class="pill"><input class="vh" type="radio" name="t3" value="1">Solo yo</label><label class="pill"><input class="vh" type="radio" name="t3" value="2">Otra persona</label><label class="pill"><input class="vh" type="radio" name="t3" value="3">Ya no hace falta</label></div></div>
+      <div class="tarea"><div class="nom"><span>Compras y proveedores</span></div><div class="pills"><label class="pill"><input class="vh" type="radio" name="t4" value="1">Solo yo</label><label class="pill"><input class="vh" type="radio" name="t4" value="2">Otra persona</label><label class="pill"><input class="vh" type="radio" name="t4" value="3">Ya no hace falta</label></div></div>
+      <div class="tarea"><div class="nom"><span>Cobranzas</span></div><div class="pills"><label class="pill"><input class="vh" type="radio" name="t5" value="1">Solo yo</label><label class="pill"><input class="vh" type="radio" name="t5" value="2">Otra persona</label><label class="pill"><input class="vh" type="radio" name="t5" value="3">Ya no hace falta</label></div></div>
+      <div class="tarea"><div class="nom"><span>Redes y contenido</span></div><div class="pills"><label class="pill"><input class="vh" type="radio" name="t6" value="1">Solo yo</label><label class="pill"><input class="vh" type="radio" name="t6" value="2">Otra persona</label><label class="pill"><input class="vh" type="radio" name="t6" value="3">Ya no hace falta</label></div></div>
+      <div class="tarea"><div class="nom"><span>Presupuestos y precios</span></div><div class="pills"><label class="pill"><input class="vh" type="radio" name="t7" value="1">Solo yo</label><label class="pill"><input class="vh" type="radio" name="t7" value="2">Otra persona</label><label class="pill"><input class="vh" type="radio" name="t7" value="3">Ya no hace falta</label></div></div>
+      <div class="tarea"><div class="nom"><span>Contratar y capacitar</span></div><div class="pills"><label class="pill"><input class="vh" type="radio" name="t8" value="1">Solo yo</label><label class="pill"><input class="vh" type="radio" name="t8" value="2">Otra persona</label><label class="pill"><input class="vh" type="radio" name="t8" value="3">Ya no hace falta</label></div></div>
+      <div class="tarea"><div class="nom"><span>Agenda, turnos y horarios</span></div><div class="pills"><label class="pill"><input class="vh" type="radio" name="t9" value="1">Solo yo</label><label class="pill"><input class="vh" type="radio" name="t9" value="2">Otra persona</label><label class="pill"><input class="vh" type="radio" name="t9" value="3">Ya no hace falta</label></div></div>
+      <div class="tarea"><div class="nom"><span>Stock y pedidos</span></div><div class="pills"><label class="pill"><input class="vh" type="radio" name="t10" value="1">Solo yo</label><label class="pill"><input class="vh" type="radio" name="t10" value="2">Otra persona</label><label class="pill"><input class="vh" type="radio" name="t10" value="3">Ya no hace falta</label></div></div>
+      <div class="tarea"><div class="nom"><span>Pensar el rumbo del negocio</span></div><div class="pills"><label class="pill"><input class="vh" type="radio" name="t11" value="1">Solo yo</label><label class="pill"><input class="vh" type="radio" name="t11" value="2">Otra persona</label><label class="pill"><input class="vh" type="radio" name="t11" value="3">Ya no hace falta</label></div></div>
+    </div>
+    <div class="rango">
+      <div class="top"><label for="sHoras">¿Cuántas horas por semana te llevan, en total, las tareas que marcaste?</label><output id="vHoras" for="sHoras">30 h</output></div>
+      <input type="range" id="sHoras" min="5" max="70" step="1" value="30">
+      <div class="ends"><span>5 h</span><span>70 h</span></div>
+    </div>
+    <div class="rango">
+      <div class="top"><label for="sSobre">Hoy, ¿cuánta sobrecarga sentís? Es uno de los cuatro números que medimos en el programa.</label><output id="vSobre" for="sSobre">5 / 10</output></div>
+      <input type="range" id="sSobre" min="0" max="10" step="1" value="5">
+      <div class="ends"><span>Liviano</span><span>No doy más</span></div>
+    </div>
+    <div class="balanza" aria-live="polite">
+      <div class="lbl">Tu balanza</div>
+      <div class="barra"><i class="b1" id="bb1" style="width:0"></i><i class="b2" id="bb2" style="width:0"></i><i class="b3" id="bb3" style="width:0"></i></div>
+      <div class="cifras"><div><b id="n1">0</b>solo vos</div><div><b id="n2">0</b>podrías soltar</div><div><b id="n3">0</b>ya no hacen falta</div></div>
+      <p id="lect1">Cuando marques tus tareas, acá vas a ver cuánto de lo que cargás es de verdad tuyo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="paso" id="p2">
+  <div class="wrap">
+    <div class="kicker">Paso 2 · Qué lo sostiene y qué te cuesta</div>
+    <h2>Si fuera fácil soltar, <em>ya lo habrías hecho.</em></h2>
+    <p class="intro">Toda costumbre se mantiene porque algo te da: tranquilidad, control, la sensación de que sale bien. En el programa lo pregunto así: ¿qué ganás manteniéndolo así, y qué costo pagás? Marcá lo que te pasa. Al marcar, te muestro mi lectura.</p>
+    <div class="subt">Lo que me frena para soltar</div>
+    <div id="motivos">
+      <label class="motivo"><input class="vh" type="checkbox" name="m" value="0"><b>«Nadie lo hace como yo».</b><span class="lect"><i>Mi lectura:</i> muchas veces no falta capacidad para delegar; falta tolerancia a que el resultado no sea idéntico a como lo harías vos. Distinto no es peor.</span></label>
+      <label class="motivo"><input class="vh" type="checkbox" name="m" value="1"><b>«Explicarlo me lleva más tiempo que hacerlo».</b><span class="lect"><i>Mi lectura:</i> es cierto la primera vez. Si lo hacés vos, pagás esa hora todas las semanas. Si lo explicás bien una vez, la recuperás para siempre.</span></label>
+      <label class="motivo"><input class="vh" type="checkbox" name="m" value="2"><b>«Ya lo solté una vez y salió mal».</b><span class="lect"><i>Mi lectura:</i> revisá cómo lo soltaste. ¿Quedó claro el resultado esperado, con fecha y con un punto de control? La mayoría de las delegaciones fallan ahí, no en la persona.</span></label>
+      <label class="motivo"><input class="vh" type="checkbox" name="m" value="3"><b>«Si lo suelto, pierdo el control».</b><span class="lect"><i>Mi lectura:</i> se controla el resultado, no el paso a paso. Diez minutos por semana mirando resultados te dan más control que estar en cada detalle.</span></label>
+      <label class="motivo"><input class="vh" type="checkbox" name="m" value="4"><b>«No tengo a quién dárselo».</b><span class="lect"><i>Mi lectura:</i> a veces es un hecho y hay que contratar o capacitar. Otras veces hay alguien que podría, si le das permiso para decidir.</span></label>
+      <label class="motivo"><input class="vh" type="checkbox" name="m" value="5"><b>«Me gusta hacerlo».</b><span class="lect"><i>Mi lectura:</i> perfecto, entonces que sea una elección y no una obligación. Quedátela sabiendo cuántas horas te cuesta.</span></label>
+    </div>
+    <div class="subt">Lo que me está costando</div>
+    <div class="costos" id="costos">
+      <label class="pill"><input class="vh" type="checkbox" name="c" value="Llego a casa sin energía">Llego a casa sin energía</label>
+      <label class="pill"><input class="vh" type="checkbox" name="c" value="No tengo tiempo para pensar el rumbo">No tengo tiempo para pensar el rumbo</label>
+      <label class="pill"><input class="vh" type="checkbox" name="c" value="Mi equipo no crece">Mi equipo no crece</label>
+      <label class="pill"><input class="vh" type="checkbox" name="c" value="Postergo decisiones importantes">Postergo decisiones importantes</label>
+      <label class="pill"><input class="vh" type="checkbox" name="c" value="Mi salud">Mi salud</label>
+      <label class="pill"><input class="vh" type="checkbox" name="c" value="Mi familia o mi pareja">Mi familia o mi pareja</label>
+    </div>
+    <div class="live" id="live2" style="margin-top:14px"><p>Lo que te frena y lo que te cuesta son dos partes del mismo mapa. Juntas explican por qué todo sigue pasando por vos.</p></div>
+  </div>
+</section>
+
+<section class="paso" id="p3">
+  <div class="wrap">
+    <div class="kicker">Paso 3 · La primera que soltás</div>
+    <h2>Una sola, <em>bien soltada.</em></h2>
+    <p class="intro">En el programa nunca empezamos por todo. Elegimos una primera acción pequeña, que se pueda revisar y que se note. Soltar mal es peor que no soltar: sale mal, la recuperás y te convencés de que tenías razón.</p>
+    <div class="campo">
+      <div class="lab"><label for="sPrim">¿Cuál soltás primero?</label></div>
+      <select id="sPrim"><option value="">Elegí una tarea</option><option>Responder consultas de clientes</option><option>Aprobar pagos y gastos</option><option>Revisar el trabajo del equipo</option><option>Resolver reclamos</option><option>Compras y proveedores</option><option>Cobranzas</option><option>Redes y contenido</option><option>Presupuestos y precios</option><option>Contratar y capacitar</option><option>Agenda, turnos y horarios</option><option>Stock y pedidos</option><option>Pensar el rumbo del negocio</option></select>
+    </div>
+    <div class="campo">
+      <div class="lab"><label for="sQuien">¿A quién se la pasás?</label></div>
+      <input type="text" id="sQuien" maxlength="60" placeholder="Nombre o puesto">
+    </div>
+    <div class="subt">Cómo se suelta: del procedimiento al resultado</div>
+    <ol class="pasos5">
+      <li><b>Explicá el resultado, no el paso a paso</b><span>Qué tiene que pasar y para cuándo. Cómo lo hace, que lo decida la otra persona.</span></li>
+      <li><b>Acordá cómo se ve «bien hecho»</b><span>Dos o tres señales concretas. Si no las podés escribir, todavía no está lista para soltarse.</span></li>
+      <li><b>Dale permiso para decidir</b><span>Qué puede resolver sin consultarte y en qué casos te avisa.</span></li>
+      <li><b>Fijá un punto de control</b><span>Diez minutos por semana, el mismo día. Mirás el resultado, no cada movimiento.</span></li>
+      <li><b>Aguantá las primeras dos semanas</b><span>Va a salir distinto a como lo harías vos. Distinto no es mal. Si metés mano, la tarea vuelve a tu escritorio.</span></li>
+    </ol>
+    <div class="subt">Tu plan «si pasa esto, entonces hago esto»</div>
+    <div class="campo">
+      <div class="lab">Si sale distinto a como lo harías vos, entonces…</div>
+      <div class="pills" id="siEnt">
+        <label class="pill"><input class="vh" type="radio" name="si" value="pregunto qué pasó antes de corregir">Pregunto qué pasó antes de corregir</label>
+        <label class="pill"><input class="vh" type="radio" name="si" value="lo hablamos en el punto de control semanal">Lo hablamos en el punto de control</label>
+        <label class="pill"><input class="vh" type="radio" name="si" value="no meto mano durante dos semanas">No meto mano por dos semanas</label>
+      </div>
+    </div>
+    <div class="campo">
+      <div class="lab">Las horas que podrías liberar por semana</div>
+      <div class="horas-hoy" id="hLib">0 h</div>
+      <div class="lab" style="margin-top:12px">¿A qué las vas a dedicar? Si no lo decidís, las vuelve a ocupar la urgencia.</div>
+      <div class="pills" id="dest">
+        <label class="pill"><input class="vh" type="radio" name="dest" value="liderar a mi equipo">Liderar a mi equipo</label>
+        <label class="pill"><input class="vh" type="radio" name="dest" value="pensar el rumbo del negocio">Pensar el rumbo</label>
+        <label class="pill"><input class="vh" type="radio" name="dest" value="vender más">Vender más</label>
+        <label class="pill"><input class="vh" type="radio" name="dest" value="descansar">Descansar</label>
+        <label class="pill"><input class="vh" type="radio" name="dest" value="mi familia">Mi familia</label>
+        <label class="pill"><input class="vh" type="radio" name="dest" value="mi salud">Mi salud</label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="paso" id="datos">
+  <div class="wrap">
+    <div class="kicker">Paso 4 · Tus datos</div>
+    <h2>¿A quién le <em>preparo</em> la lectura?</h2>
+    <p class="intro">Con esto te devuelvo tu Mapa de Claridad en versión corta: lo que se ve, el patrón, lo que lo sostiene, lo que te cuesta y por dónde empezar. Y te comparto la propuesta de Claridad Privada, como te prometí en el video.</p>
+    <form class="form" id="form" novalidate>
+      <div class="field" data-f="nombre"><label for="f_nombre">Nombre y apellido</label><input type="text" id="f_nombre" autocomplete="name" maxlength="80"><div class="msg">Escribí tu nombre y apellido.</div></div>
+      <div class="grid2">
+        <div class="field" data-f="whatsapp"><label for="f_whatsapp">WhatsApp</label><input type="tel" id="f_whatsapp" autocomplete="tel" inputmode="tel" placeholder="+54 9 11 1234 5678" maxlength="24"><div class="help">Con el código de tu país.</div><div class="msg">Revisá el número: con código de país, solo dígitos.</div></div>
+        <div class="field" data-f="email"><label for="f_email">Email <span class="opt">(opcional)</span></label><input type="email" id="f_email" autocomplete="email" maxlength="100"><div class="msg">Ese email no parece válido.</div></div>
+      </div>
+      <div class="grid2">
+        <div class="field" data-f="instagram"><label for="f_instagram">Usuario de Instagram <span class="opt">(opcional)</span></label><input type="text" id="f_instagram" placeholder="@tuusuario" maxlength="40" autocapitalize="off"></div>
+        <div class="field" data-f="pais"><label for="f_pais">País <span class="opt">(opcional)</span></label><input type="text" id="f_pais" autocomplete="country-name" maxlength="40"></div>
+      </div>
+      <div class="field" data-f="empresa"><label for="f_empresa">Empresa o proyecto <span class="opt">(opcional)</span></label><input type="text" id="f_empresa" autocomplete="organization" maxlength="80"></div>
+      <div class="grid2">
+        <div class="field" data-f="rol"><label for="f_rol">Tu rol hoy</label><select id="f_rol"><option value="">Elegí una opción</option></select><div class="msg">Elegí tu rol.</div></div>
+        <div class="field" data-f="equipo"><label for="f_equipo">¿Cuántas personas trabajan con vos?</label><select id="f_equipo"><option value="">Elegí una opción</option></select><div class="msg">Elegí una opción.</div></div>
+      </div>
+      <div class="field" data-f="cuando"><label for="f_cuando">Si encontraras el acompañamiento indicado, ¿cuándo te gustaría empezar?</label><select id="f_cuando"><option value="">Elegí una opción</option></select><div class="msg">Elegí una opción.</div></div>
+      <div class="field" data-f="inversion"><label for="f_inversion">¿Estás en condiciones de invertir en un proceso 1 a 1 si es lo que necesitás?</label><select id="f_inversion"><option value="">Elegí una opción</option></select><div class="msg">Elegí una opción.</div></div>
+      <label class="consent" id="consentWrap"><input type="checkbox" id="f_consent"> <span>Acepto que el equipo de Romina Carzoglio guarde mis respuestas y me escriba por WhatsApp para conversar sobre mis resultados.</span></label>
+      <button class="btn" type="submit" id="go">Conocer mis resultados</button>
+      <div class="formerr" id="formErr" aria-live="polite"></div>
+    </form>
+    <p class="privacy">Tus respuestas las leemos solo mi equipo y yo. No se comparten con nadie más.</p>
+  </div>
+</section>
+
+<section class="paso" id="resultados" hidden style="border-bottom:0">
+  <div class="wrap">
+    <div class="kicker">Tus resultados</div>
+    <h2 id="rTitle">Esto es lo que <em>mostraron tus respuestas.</em></h2>
+    <div class="verdict" id="verdict"></div>
+    <div id="toolResults"></div>
+    <div class="program">
+      <div class="kicker">La propuesta</div>
+      <h3 style="margin-top:8px">Claridad Privada</h3>
+      <p>En Claridad Privada trabajamos qué estás cargando de más y cómo liberar espacio para liderar desde otro lugar. Son dos meses conmigo, uno a uno, en cuatro encuentros. El primer día medimos cuatro números del 0 al 10 (claridad, confianza, sobrecarga y equilibrio) y el último día los volvemos a medir. No trabajamos cómo te sentís: trabajamos qué decidís, qué delegás y cuántas horas recuperás.</p>
+      <ul>
+        <li><span>60</span>días, en tres fases: diagnóstico, liderazgo y delegación, y proyección.</li>
+        <li><span>4</span>sesiones individuales de 60 minutos conmigo, una cada dos semanas.</li>
+        <li><span>0–10</span>cuatro números (claridad, confianza, sobrecarga y equilibrio) medidos el primer día y el último.</li>
+        <li><span>10</span>personas como máximo por cohorte: cada lugar es tiempo directo conmigo.</li>
+      </ul>
+      <div class="enc">
+        <div><b>Encuentros 1 y 2 · Diagnóstico</b>Qué está pasando de verdad. Entre uno y otro hay quince días de observación, y de ahí sale un mapa con tus focos.</div>
+        <div><b>Encuentro 3 · Liderazgo y delegación</b>Lo que hoy sostenés vos y debería sostener otra persona, y cómo se lo pasás.</div>
+        <div><b>Encuentro 4 · Proyección y cierre</b>Las decisiones con fecha y la segunda medición de tus cuatro números.</div>
+      </div>
+    </div>
+    <div class="print"><button class="btn ghost" type="button" id="imprimir">Guardar o imprimir mi hoja</button></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="sig">Romina Carzoglio</div>
+    <div>Claridad Privada · rominacarzoglio.com</div>
+  </div>
+</footer>
+
+<script>
+var G = (function(){
+  var T = ["Responder consultas de clientes","Aprobar pagos y gastos","Revisar el trabajo del equipo","Resolver reclamos","Compras y proveedores","Cobranzas","Redes y contenido","Presupuestos y precios","Contratar y capacitar","Agenda, turnos y horarios","Stock y pedidos","Pensar el rumbo del negocio"];
+  var MOT = ["«Nadie lo hace como yo»","«Explicarlo me lleva más tiempo que hacerlo»","«Ya lo solté una vez y salió mal»","«Si lo suelto, pierdo el control»","«No tengo a quién dárselo»","«Me gusta hacerlo»"];
+  var LEC = ["No falta capacidad para delegar: falta tolerancia a que el resultado no sea idéntico.","La hora que te lleva explicar se recupera; la que te lleva hacerlo, se paga cada semana.","La delegación anterior probablemente falló en cómo se soltó, no en la persona.","Se controla el resultado, no el paso a paso.","Puede faltar una persona, o puede faltar darle permiso para decidir.","Puede quedarse, pero como elección."];
+  var PASOS = ["Explicá el resultado, no el paso a paso","Acordá cómo se ve «bien hecho»","Dale permiso para decidir","Fijá un punto de control semanal","Aguantá las primeras dos semanas"];
+
+  function init(){ return {e:T.map(function(){ return 0; }), horas:30, sobre:5, m:[], c:[], prim:"", quien:"", si:"", dest:""}; }
+  function cuenta(t, k){ return t.e.filter(function(x){ return x === k; }).length; }
+  function marcadas(t){ return t.e.filter(function(x){ return x > 0; }).length; }
+  function libres(t){ var m = marcadas(t); return m ? Math.round(t.horas * (cuenta(t,2) + cuenta(t,3)) / m) : 0; }
+  function de(t, k){ return T.filter(function(_,i){ return t.e[i] === k; }); }
+  function q(s){ return document.querySelector(s); }
+  function qa(s){ return [].slice.call(document.querySelectorAll(s)); }
+
+  /* El estado se lee siempre de los controles: lo que está marcado en pantalla es la verdad */
+  function leer(t){
+    T.forEach(function(_,i){ var r = q('input[name="t'+i+'"]:checked'); t.e[i] = r ? +r.value : 0; });
+    t.horas = +U.$("sHoras").value; t.sobre = +U.$("sSobre").value;
+    t.m = qa('input[name="m"]:checked').map(function(x){ return +x.value; });
+    t.c = qa('input[name="c"]:checked').map(function(x){ return x.value; });
+    t.prim = U.$("sPrim").value; t.quien = U.$("sQuien").value;
+    var s = q('input[name="si"]:checked'); t.si = s ? s.value : "";
+    var d = q('input[name="dest"]:checked'); t.dest = d ? d.value : "";
+  }
+  function escribir(t){
+    T.forEach(function(_,i){ qa('input[name="t'+i+'"]').forEach(function(x){ x.checked = +x.value === t.e[i]; }); });
+    U.$("sHoras").value = t.horas; U.$("sSobre").value = t.sobre;
+    qa('input[name="m"]').forEach(function(x){ x.checked = t.m.indexOf(+x.value) >= 0; });
+    qa('input[name="c"]').forEach(function(x){ x.checked = t.c.indexOf(x.value) >= 0; });
+    U.$("sPrim").value = t.prim; U.$("sQuien").value = t.quien;
+    qa('input[name="si"]').forEach(function(x){ x.checked = x.value === t.si; });
+    qa('input[name="dest"]').forEach(function(x){ x.checked = x.value === t.dest; });
+  }
+  function pintar(t){
+    var m = marcadas(t), n1 = cuenta(t,1), n2 = cuenta(t,2), n3 = cuenta(t,3);
+    U.$("n1").textContent = n1; U.$("n2").textContent = n2; U.$("n3").textContent = n3;
+    U.$("bb1").style.width = (m ? n1/m*100 : 0)+"%"; U.$("bb2").style.width = (m ? n2/m*100 : 0)+"%"; U.$("bb3").style.width = (m ? n3/m*100 : 0)+"%";
+    U.$("lect1").textContent = !m ? "Cuando marques tus tareas, acá vas a ver cuánto de lo que cargás es de verdad tuyo."
+      : n1 > m/2 ? "Marcaste más de la mitad como «solo yo». Volvé a mirarlas con calma: muchas veces «solo yo» quiere decir «nadie lo hace como yo», y no es lo mismo."
+      : "De lo que hacés, unas "+libres(t)+" horas por semana podría hacerlo otra persona o dejar de hacerse. Al mes son unas "+Math.round(libres(t)*4.3)+" horas.";
+    U.$("vHoras").textContent = t.horas+" h"; U.$("vSobre").textContent = t.sobre+" / 10";
+    U.fill(U.$("sHoras")); U.fill(U.$("sSobre"));
+    U.$("hLib").textContent = libres(t)+" h";
+    U.$("live2").innerHTML = (!t.m.length && !t.c.length) ? "<p>Lo que te frena y lo que te cuesta son dos partes del mismo mapa. Juntas explican por qué todo sigue pasando por vos.</p>"
+      : '<div class="lbl">Lo que se ve en tu mapa</div><p>'+(t.m.length ? "Lo que te frena: "+t.m.map(function(i){ return MOT[i]; }).join(", ")+". " : "")+(t.c.length ? "Lo que te cuesta: "+t.c.join(", ").toLowerCase()+"." : "")+
+        (t.m.length && t.c.length ? " Esa es la cuenta que casi nadie hace: lo que ganás manteniéndolo así contra lo que pagás." : "")+'</p>';
+  }
+  function mount(t, update){
+    if (document.querySelector("#p1 input:checked, #p2 input:checked, #p3 input:checked")) leer(t); else escribir(t);
+    pintar(t);
+    var raiz = document.querySelector("main");
+    function cambio(){ leer(t); pintar(t); update(); }
+    raiz.addEventListener("change", function(e){ if (e.target.closest("#p1,#p2,#p3")) cambio(); });
+    raiz.addEventListener("input", function(e){ if (e.target.closest("#p1,#p2,#p3")) cambio(); });
+    /* Tocar de nuevo la opción elegida de una tarea la desmarca (si no te toca) */
+    U.$("tareas").addEventListener("click", function(e){
+      var l = e.target.closest(".pill"); if (!l) return; var r = l.querySelector("input");
+      if (r.checked && r.dataset.was === "1") { e.preventDefault(); r.checked = false; r.dataset.was = ""; cambio(); return; }
+      qa('input[name="'+r.name+'"]').forEach(function(x){ x.dataset.was = ""; }); setTimeout(function(){ r.dataset.was = r.checked ? "1" : ""; }, 0);
+    });
+    T.forEach(function(_,i){ var r = q('input[name="t'+i+'"]:checked'); if (r) r.dataset.was = "1"; });
+  }
+  function senales(t){
+    var s = [], m = marcadas(t);
+    if (m >= 8) s.push(m+" tareas pasan por ella o por él");
+    if (libres(t) >= 8) s.push(libres(t)+" h por semana que podría soltar");
+    if (t.sobre >= 7) s.push("sobrecarga "+t.sobre+" de 10");
+    if (t.c.length >= 3) s.push(t.c.length+" costos que ya está pagando");
+    return s;
+  }
+  function results(t){
+    var m = marcadas(t), lib = libres(t), quien = t.quien.trim();
+    var h = '<div class="block"><span class="kicker">Tu Mapa de Claridad · versión corta</span><div class="mapa">'+
+      '<div><span>Lo que se ve</span>'+(m ? m+' tareas pasan por vos y te llevan unas '+t.horas+' horas por semana. Sobrecarga de hoy: '+t.sobre+' de 10.' : 'No marcaste tareas en el paso 1.')+'</div>'+
+      '<div><span>El patrón</span>'+(m ? 'Solo tuyas: '+cuenta(t,1)+'. Podría hacerlas otra persona: '+cuenta(t,2)+'. Ya no hacen falta: '+cuenta(t,3)+'.' : '—')+'</div>'+
+      '<div><span>Lo que lo sostiene</span>'+(t.m.length ? t.m.map(function(i){ return MOT[i]+": "+LEC[i]; }).join("<br>") : 'No marcaste qué te frena. Vale la pena volver al paso 2: es la parte del mapa que más explica.')+'</div>'+
+      '<div><span>Lo que te cuesta</span>'+(t.c.length ? t.c.join(", ")+'. ' : '')+(lib ? 'Y unas '+Math.round(lib*4.3)+' horas por mes que podrían ser tuyas.' : '')+'</div>'+
+      '<div><span>Por dónde empezar</span>'+(t.prim ? 'Soltar «'+U.esc(t.prim)+'»'+(quien ? ', pasándosela a '+U.esc(quien) : '')+'. ' : 'Elegí una sola tarea para soltar primero. ')+(t.si ? 'Si sale distinto, '+t.si+'. ' : '')+(t.dest ? 'Las horas que recuperes van a '+t.dest+'.' : '')+'</div>'+
+      '</div></div>';
+    h += '<div class="block"><span class="kicker">Tu plan para soltar la primera</span><div class="sheet"><h3>'+(t.prim ? U.esc(t.prim) : "Tu primera tarea: ____")+'</h3>'+
+      '<div class="line"><span>Se la pasás a</span>'+(quien ? U.esc(quien) : "____")+'</div>'+
+      PASOS.map(function(p,i){ return '<div class="line"><span>Paso '+(i+1)+'</span>'+p+'</div>'; }).join("")+
+      '<div class="line"><span>Si sale distinto</span>'+(t.si || "____")+'</div>'+
+      '<div class="line"><span>Las horas que recuperás van a</span>'+(t.dest || "____")+'</div></div>'+
+      '<p class="note" style="margin-top:10px">Este mapa es una primera lectura. En el programa lo armamos completo, con lo que observás durante quince días, y lo validamos juntos antes de elegir el foco.</p></div>';
+    return h;
+  }
+  function resumen(t){
+    return "SOLO YO: "+(de(t,1).join(", ")||"—")+"\nPODRÍA SOLTAR: "+(de(t,2).join(", ")||"—")+"\nYA NO HACE FALTA: "+(de(t,3).join(", ")||"—")+
+      "\nHoras por semana: "+t.horas+" · liberables: "+libres(t)+" · sobrecarga: "+t.sobre+"/10"+
+      "\nLO QUE LA FRENA: "+(t.m.map(function(i){ return MOT[i]; }).join(", ")||"—")+"\nLO QUE LE CUESTA: "+(t.c.join(", ")||"—")+
+      (t.prim ? "\nPrimera que suelta: "+t.prim+(t.quien.trim() ? " → "+t.quien.trim() : "") : "")+(t.si ? "\nSi sale distinto: "+t.si : "")+(t.dest ? "\nHoras para: "+t.dest : "");
+  }
+  function problema(t){ var m = marcadas(t); return m ? m+" tareas pasan por ella o por él ("+t.horas+" h/semana), sobrecarga "+t.sobre+"/10; podría liberar "+libres(t)+" h/semana."+(t.m.length ? " La frena: "+t.m.map(function(i){ return MOT[i]; }).join(", ")+"." : "") : "Siente que si no lo hace, no sale bien."; }
+  function objetivo(t){ return t.prim ? "Soltar «"+t.prim+"»"+(t.dest ? " y dedicar ese tiempo a "+t.dest : "") : "Liberar espacio para liderar desde otro lugar"; }
+  return {key:"soltar3", palabra:"soltar", nombre:"Soltar · Lo que estás cargando de más", init:init, mount:mount, senales:senales, results:results, resumen:resumen, problema:problema, objetivo:objetivo};
+})();
+</script>
+<script>
+(function(){
+  /* ── Destino de los datos ─────────────────────────────────────────────
+     Mismo puente que la guía «claridad»: FormSubmit → correo. El asunto empieza con
+     «Nuevo diagnóstico» y el campo Origen dice «guia-reel», así la tarea
+     base-prospectos-guia-reels lo pasa a la base del artefacto. */
+  var MAIL = "ssaldanoc@gmail.com";
+  var ENDPOINT = "https://formsubmit.co/ajax/" + MAIL;
+  var KEY = "guia-" + G.key + "-v1";
+
+  var qs = new URLSearchParams(location.search);
+  var PALABRA = (qs.get("palabra") || qs.get("p") || G.palabra).toLowerCase().trim().slice(0,30);
+  var IG_URL = (qs.get("ig") || "").replace(/[^\w.@]/g,"").slice(0,40);
+  document.getElementById("hKicker").textContent = "Escribiste «" + PALABRA + "»";
+
+  var ROL = ["Dueño o dueña de una empresa o negocio","Directivo, gerente o líder con equipo a cargo","Profesional independiente","Trabajo en relación de dependencia sin equipo a cargo","Otro"];
+  var EQUIPO = ["Trabajo solo o sola","2 a 5 personas","6 a 20 personas","Más de 20 personas"];
+  var CUANDO = ["Ahora, este mes","En los próximos 2 o 3 meses","Más adelante","Solo estoy explorando"];
+  var INVERSION = ["Sí, si es lo que necesito","Tendría que evaluarlo","No por ahora"];
+
+  /* ── utilidades que usan las guías ── */
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function fmt(n, d){ var k = Math.pow(10, d == null ? 1 : d); return (Math.round(n*k)/k).toString().replace(".",","); }
+  function money(n){ var s = Math.round(Math.abs(n)).toString().replace(/\B(?=(\d{3})+(?!\d))/g,"."); return (n < 0 ? "−" : "") + s; }
+  function fill(r){ r.style.setProperty("--p", (r.value - r.min) / (r.max - r.min) * 100 + "%"); }
+  function seg(name, list, cur){
+    return '<div class="seg" data-name="'+name+'">'+list.map(function(v){ return '<button type="button" data-v="'+esc(v)+'"'+(v===cur?' class="on"':'')+'>'+esc(v)+'</button>'; }).join("")+'</div>';
+  }
+  function bar(label, value, max, right, low){
+    return '<div class="bar'+(low?" low":"")+'"><div class="bl"><b>'+label+'</b><span>'+right+'</span></div><div class="track"><div class="fill" style="width:'+Math.max(0,Math.min(100,value/max*100))+'%"></div></div></div>';
+  }
+  function first(s){ return (String(s||"").trim().split(/\s+/)[0]) || ""; }
+  window.U = {$:$, esc:esc, fmt:fmt, money:money, fill:fill, seg:seg, bar:bar, first:first};
+
+  /* ── estado ── */
+  function blank(){ return {t:G.init(), c:{nombre:"",whatsapp:"",email:"",instagram:IG_URL,pais:"",empresa:"",rol:"",equipo:"",cuando:"",inversion:"",consent:false}, sent:0, pending:null}; }
+  var st = blank();
+  try { var raw = localStorage.getItem(KEY); if (raw) { var o = JSON.parse(raw); if (o && o.t && o.c) { st.t = Object.assign(st.t, o.t); st.c = Object.assign(st.c, o.c); st.sent = o.sent||0; st.pending = o.pending||null; if (IG_URL && !st.c.instagram) st.c.instagram = IG_URL; } } } catch(e) {}
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e) {} }
+  function update(){ save(); if (!$("resultados").hidden) renderResults(); }
+
+  /* ── formulario ── */
+  function opts(sel, list){ list.forEach(function(v){ var o=document.createElement("option"); o.textContent=v; sel.appendChild(o); }); }
+  opts($("f_rol"),ROL); opts($("f_equipo"),EQUIPO); opts($("f_cuando"),CUANDO); opts($("f_inversion"),INVERSION);
+  ["nombre","whatsapp","email","instagram","pais","empresa","rol","equipo","cuando","inversion"].forEach(function(k){ $("f_"+k).value = st.c[k] || ""; });
+  $("f_consent").checked = !!st.c.consent;
+
+  /* Nivel de preparación, igual que en la guía «claridad»:
+     listo = perfil + quiere empezar pronto + «sí» a invertir + al menos dos señales de la herramienta. */
+  function nivel(){
+    var c = st.c, motivos = [];
+    var perfil = c.rol === ROL[0] || c.rol === ROL[1] || (c.rol === ROL[2] && c.equipo && c.equipo !== EQUIPO[0]);
+    motivos.push((perfil?"✔ ":"✘ ")+"Perfil: "+(c.rol||"sin dato")+" · equipo: "+(c.equipo||"sin dato"));
+    var urg = c.cuando === CUANDO[0] ? 2 : c.cuando === CUANDO[1] ? 1 : 0;
+    motivos.push((urg?"✔ ":"✘ ")+"Quiere empezar: "+(c.cuando||"sin dato"));
+    var inv = c.inversion === INVERSION[0] ? 2 : c.inversion === INVERSION[1] ? 1 : 0;
+    motivos.push((inv===2?"✔ ":inv===1?"~ ":"✘ ")+"Inversión: "+(c.inversion||"sin dato"));
+    var dolor = G.senales(st.t);
+    motivos.push((dolor.length>=2?"✔ ":dolor.length?"~ ":"✘ ")+"Señales de la guía ("+dolor.length+"): "+(dolor.join("; ")||"ninguna fuerte"));
+    var k;
+    if (perfil && urg >= 1 && inv === 2 && dolor.length >= 2) k = "listo";
+    else if (perfil && (urg >= 1 || inv >= 1) && dolor.length >= 1) k = "tibio";
+    else k = "no";
+    return {k:k, motivos:motivos, etiqueta:{listo:"LISTO PARA INGRESAR",tibio:"TIBIO, NUTRIR",no:"TODAVÍA NO"}[k]};
+  }
+
+  var VERDICT = {
+    listo:["Es un buen momento para trabajarlo","Tus respuestas muestran tres cosas a la vez: esto te está costando de verdad, querés moverte pronto y estás en condiciones de hacerlo. Mi equipo ya tiene tus respuestas y te va a escribir por WhatsApp para coordinar una primera conversación."],
+    tibio:["Hay señales claras, y vale la pena mirarlas","Lo que respondiste muestra un costo real, aunque quizás no sea el momento exacto para empezar. Mi equipo ya tiene tus respuestas. Si querés conversar antes, respondé el mensaje por donde te llegó esta guía."],
+    no:["Quizás todavía no sea el momento de un proceso 1 a 1","Y está bien. Guardá lo que armaste acá y volvé a mirarlo dentro de un mes. Si algo se movió, perfecto. Si sigue igual, ya sabés por dónde empezar."]
+  };
+
+  function renderResults(){
+    var nv = nivel(), nombre = first(st.c.nombre);
+    $("rTitle").innerHTML = (nombre ? esc(nombre)+", esto" : "Esto")+" es lo que <em>mostraron tus respuestas.</em>";
+    var V = (G.verdict && G.verdict[nv.k]) || VERDICT[nv.k];
+    $("verdict").innerHTML = '<h3>'+V[0]+'</h3><p>'+V[1]+'</p>';
+    $("toolResults").innerHTML = G.results(st.t, nombre);
+    if (G.afterResults) G.afterResults(st.t);
+  }
+
+  function payload(){
+    var c = st.c, nv = nivel(), t = st.t, nombre = c.nombre.trim();
+    return {
+      "_subject": "Nuevo diagnóstico · "+nv.etiqueta+" · "+nombre+" · guía «"+PALABRA+"»"+(st.sent?" (actualización)":""),
+      "_template": "table",
+      "_captcha": "false",
+      "Nivel": nv.etiqueta,
+      "Motivos del nivel": nv.motivos.join("\n"),
+      "Nombre y apellido": nombre,
+      "WhatsApp": c.whatsapp.trim(),
+      "Email": c.email.trim() || "—",
+      "Instagram": c.instagram.trim() || "—",
+      "País": c.pais.trim() || "—",
+      "Empresa o proyecto": c.empresa.trim() || "—",
+      "Rol actual": c.rol,
+      "Tamaño del equipo": c.equipo,
+      "Cuándo quiere empezar": c.cuando,
+      "Inversión en un proceso 1 a 1": c.inversion,
+      "Mayor problema, dificultad o preocupación": G.problema(t) || "—",
+      "Objetivo con Claridad Privada": G.objetivo(t) || "—",
+      "Guía": G.nombre,
+      "Lo que trabajó en la guía": G.resumen(t) || "—",
+      "Palabra comentada": PALABRA,
+      "Origen": "guia-reel",
+      "Enviado desde": location.href.split("#")[0]
+    };
+  }
+  function send(data){
+    return fetch(ENDPOINT, {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body:JSON.stringify(data)})
+      .then(function(r){ return r.json().catch(function(){ return {}; }); })
+      .then(function(j){ if (String(j.success) !== "true") throw new Error(j.message || "envío rechazado"); return j; });
+  }
+
+  function validate(){
+    var ok = true, c = st.c;
+    function mark(k, bad){ document.querySelector('.field[data-f="'+k+'"]').classList.toggle("bad", bad); if (bad) ok = false; }
+    mark("nombre", c.nombre.trim().split(/\s+/).length < 2 || c.nombre.trim().length < 4);
+    mark("whatsapp", !/^\+?[\d\s\-().]{8,20}$/.test(c.whatsapp.trim()) || c.whatsapp.replace(/\D/g,"").length < 8);
+    mark("email", !!c.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(c.email.trim()));
+    mark("rol", !c.rol); mark("equipo", !c.equipo); mark("cuando", !c.cuando); mark("inversion", !c.inversion);
+    $("consentWrap").classList.toggle("bad", !c.consent); if (!c.consent) ok = false;
+    return ok;
+  }
+  function reveal(){ document.body.classList.add("res"); $("resultados").hidden = false; $("navRes").classList.remove("locked"); renderResults(); }
+
+  ["nombre","whatsapp","email","instagram","pais","empresa"].forEach(function(k){ $("f_"+k).addEventListener("input", function(e){ st.c[k] = e.target.value; save(); }); });
+  ["rol","equipo","cuando","inversion"].forEach(function(k){ $("f_"+k).addEventListener("change", function(e){ st.c[k] = e.target.value; save(); }); });
+  $("f_consent").addEventListener("change", function(e){ st.c.consent = e.target.checked; save(); });
+
+  $("form").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    $("formErr").textContent = "";
+    if (!validate()) { $("formErr").textContent = "Revisá los campos marcados."; var b = document.querySelector(".field.bad, .consent.bad"); if (b) b.scrollIntoView({behavior:"smooth",block:"center"}); return; }
+    var data = payload(), btn = $("go");
+    btn.disabled = true; btn.textContent = "Preparando tus resultados…";
+    send(data).then(function(){ st.sent = Date.now(); st.pending = null; save(); })
+    .catch(function(){ st.pending = data; save(); }) /* la persona igual ve sus resultados; el envío se reintenta al volver */
+    .then(function(){ btn.disabled = false; btn.textContent = "Actualizar mis resultados"; reveal(); $("resultados").scrollIntoView({behavior:"smooth"}); });
+  });
+  if (st.pending) send(st.pending).then(function(){ st.sent = Date.now(); st.pending = null; save(); }).catch(function(){});
+
+  /* botones de opción y desplegables, para todas las guías */
+  document.addEventListener("click", function(e){
+    var b = e.target.closest(".seg button");
+    if (b) { /* tocar la opción ya elegida la desmarca */
+      var s = b.parentNode, off = b.classList.contains("on");
+      s.querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", !off && x===b); });
+      if (G.onSeg) G.onSeg(s.dataset.name, off ? "" : b.dataset.v, st.t); update(); return; }
+    var o = e.target.closest(".open");
+    if (o) { var on = o.getAttribute("aria-expanded") !== "true"; o.setAttribute("aria-expanded", on); var nx = o.nextElementSibling; if (nx) nx.classList.toggle("on", on); return; }
+    if (e.target.closest("#imprimir")) window.print();
+  });
+
+  var links = document.querySelectorAll(".steps a");
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) links.forEach(function(l){ l.classList.toggle("on", l.dataset.s === e.target.id); }); });
+    }, {rootMargin:"-45% 0px -50% 0px"});
+    document.querySelectorAll("section.paso").forEach(function(s){ io.observe(s); });
+  }
+
+  G.mount(st.t, update);
+  if (st.sent || st.pending) { reveal(); $("go").textContent = "Actualizar mis resultados"; }
+})();
+</script>
+</body>
+</html>
